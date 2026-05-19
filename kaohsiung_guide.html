@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>가오슝 4박5일 여행 가이드</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Noto Sans KR', sans-serif; background: #0f0f1a; color: #fff; min-height: 100vh; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #1a1a3e 0%, #2d1b5e 40%, #1a3a5e 100%);
+    padding: 60px 40px 50px; text-align: center; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+    background: radial-gradient(circle at 30% 40%, rgba(120,80,255,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(0,180,255,0.1) 0%, transparent 50%);
+  }
+  .hero-tag {
+    display: inline-block; background: rgba(255,200,50,0.2); border: 1px solid rgba(255,200,50,0.5);
+    color: #ffc832; font-size: 13px; font-weight: 700; letter-spacing: 3px;
+    padding: 6px 20px; border-radius: 20px; margin-bottom: 20px; position: relative;
+  }
+  .hero h1 { font-size: 52px; font-weight: 900; line-height: 1.15; position: relative; margin-bottom: 12px; }
+  .hero h1 span { color: #ffc832; }
+  .hero-sub { font-size: 16px; color: rgba(255,255,255,0.6); position: relative; margin-bottom: 30px; }
+  .hero-badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; position: relative; }
+  .badge { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 8px 18px; border-radius: 20px; font-size: 13px; color: rgba(255,255,255,0.8); }
+
+  /* WEATHER */
+  .weather-bar { background: linear-gradient(90deg, #ff6b35, #f7931e); padding: 14px 40px; display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 500; }
+
+  /* CONTAINER */
+  .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+
+  /* SECTION TITLES */
+  .section-title { font-size: 22px; font-weight: 800; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+  .section-title .emoji { font-size: 26px; }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.1); margin-left: 12px; }
+
+  /* MAP LINK */
+  a.map-link { text-decoration: none; color: inherit; display: block; }
+  a.map-link:hover .spot-card, a.map-link:hover .food-item-inner, a.map-link:hover .info-row-link {
+    border-color: rgba(66,153,225,0.5) !important;
+    background: rgba(66,153,225,0.08) !important;
+    transform: translateY(-2px);
+  }
+  .map-hint {
+    font-size: 10px; color: rgba(66,153,225,0.7); margin-top: 6px;
+    display: flex; align-items: center; gap: 3px;
+  }
+  .map-hint::before { content: '📍'; font-size: 10px; }
+
+  /* ITINERARY */
+  .itinerary { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 50px; }
+  .day-card {
+    background: linear-gradient(145deg, #1e1e3a, #161628); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px; padding: 20px 16px; position: relative; overflow: hidden;
+    transition: all 0.2s;
+  }
+  .day-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 16px 16px 0 0; }
+  .day-card:nth-child(1)::before { background: linear-gradient(90deg, #7c3aed, #3b82f6); }
+  .day-card:nth-child(2)::before { background: linear-gradient(90deg, #ec4899, #f97316); }
+  .day-card:nth-child(3)::before { background: linear-gradient(90deg, #10b981, #3b82f6); }
+  .day-card:nth-child(4)::before { background: linear-gradient(90deg, #f59e0b, #ef4444); }
+  .day-card:nth-child(5)::before { background: linear-gradient(90deg, #6366f1, #ec4899); }
+  .day-num { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: rgba(255,255,255,0.4); margin-bottom: 4px; }
+  .day-date { font-size: 17px; font-weight: 800; margin-bottom: 14px; color: #ffc832; }
+  .day-slot { margin-bottom: 12px; }
+  .slot-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; color: rgba(255,255,255,0.35); margin-bottom: 4px; text-transform: uppercase; }
+  .slot-content { font-size: 12.5px; line-height: 1.6; color: rgba(255,255,255,0.85); }
+  .slot-content strong { color: #fff; font-weight: 700; }
+  .slot-map-link { font-size: 10px; color: rgba(66,153,225,0.7); cursor: pointer; display: inline-flex; align-items: center; gap: 3px; margin-top: 2px; text-decoration: none; }
+  .slot-map-link:hover { color: #63b3ed; }
+
+  /* SPOTS GRID */
+  .spots-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 50px; }
+  .spot-card {
+    background: #1a1a2e; border: 1px solid rgba(255,255,255,0.07); border-radius: 14px;
+    padding: 16px; position: relative; cursor: pointer; transition: all 0.2s;
+  }
+  .spot-card:hover { border-color: rgba(66,153,225,0.5); background: rgba(66,153,225,0.06); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+  .spot-rank { position: absolute; top: 12px; right: 12px; background: rgba(255,200,50,0.15); color: #ffc832; font-size: 11px; font-weight: 800; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .spot-emoji { font-size: 28px; margin-bottom: 8px; }
+  .spot-name { font-size: 13px; font-weight: 800; margin-bottom: 6px; line-height: 1.4; padding-right: 28px; }
+  .spot-stars { color: #ffc832; font-size: 11px; margin-bottom: 6px; }
+  .spot-info { font-size: 11px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+  .spot-price { display: inline-block; margin-top: 8px; background: rgba(16,185,129,0.15); color: #10b981; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px; }
+  .must-go { position: absolute; bottom: 12px; right: 12px; background: rgba(239,68,68,0.15); color: #ef4444; font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 4px; letter-spacing: 1px; }
+
+  /* FOOD */
+  .food-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 30px; }
+  .food-category { background: #1a1a2e; border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 22px; }
+  .food-cat-title { font-size: 14px; font-weight: 800; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; gap: 8px; }
+  .food-item {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.04); gap: 8px;
+    cursor: pointer; border-radius: 8px; padding: 9px 6px; transition: all 0.2s; text-decoration: none; color: inherit;
+  }
+  .food-item:hover { background: rgba(66,153,225,0.08); }
+  .food-item:last-child { border-bottom: none; }
+  .food-name { font-size: 12.5px; font-weight: 600; line-height: 1.4; }
+  .food-menu { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 2px; }
+  .food-price-tag { font-size: 11px; font-weight: 700; color: #10b981; white-space: nowrap; margin-top: 2px; }
+  .michelin { color: #ef4444; font-size: 10px; font-weight: 800; }
+  .food-map { font-size: 10px; color: rgba(66,153,225,0.6); margin-top: 3px; display: flex; align-items: center; gap: 3px; }
+
+  /* NIGHT MARKET */
+  .night-market-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 50px; }
+  .nm-card { background: #1a1a2e; border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 22px; }
+  .nm-title { font-size: 16px; font-weight: 800; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .nm-title a { color: inherit; text-decoration: none; }
+  .nm-title a:hover { color: #63b3ed; }
+  .nm-info { font-size: 12px; color: rgba(255,255,255,0.45); margin-bottom: 16px; }
+  .nm-warning { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.25); color: #ef4444; font-size: 11px; font-weight: 600; padding: 6px 12px; border-radius: 8px; margin-bottom: 14px; }
+  .nm-ok { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.25); color: #10b981; font-size: 11px; font-weight: 600; padding: 6px 12px; border-radius: 8px; margin-bottom: 14px; }
+  .nm-food-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .nm-food-chip { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 5px 12px; border-radius: 20px; font-size: 12px; }
+  .nm-map-btn { display: inline-flex; align-items: center; gap: 6px; background: rgba(66,153,225,0.15); border: 1px solid rgba(66,153,225,0.3); color: #63b3ed; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 20px; text-decoration: none; margin-bottom: 14px; transition: all 0.2s; }
+  .nm-map-btn:hover { background: rgba(66,153,225,0.25); }
+
+  /* BOTTOM GRID */
+  .bottom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 50px; }
+  .info-card { background: #1a1a2e; border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 22px; }
+  .info-card-title { font-size: 14px; font-weight: 800; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .info-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 12.5px; gap: 8px; }
+  .info-row:last-child { border-bottom: none; }
+  .info-label { color: rgba(255,255,255,0.5); font-size: 12px; }
+  .info-value { font-weight: 600; text-align: right; font-size: 12px; }
+  .hotel-link { display: flex; justify-content: space-between; align-items: center; padding: 8px 6px; border-bottom: 1px solid rgba(255,255,255,0.04); border-radius: 8px; text-decoration: none; color: inherit; transition: all 0.2s; gap: 8px; }
+  .hotel-link:hover { background: rgba(66,153,225,0.08); }
+  .hotel-link:last-child { border-bottom: none; }
+  .green { color: #10b981; }
+  .yellow { color: #ffc832; }
+  .red { color: #ef4444; }
+  .blue { color: #63b3ed; }
+
+  /* TIPS */
+  .tips-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 40px; }
+  .tip-card { background: #1a1a2e; border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 16px; display: flex; gap: 12px; align-items: flex-start; }
+  .tip-icon { font-size: 22px; flex-shrink: 0; }
+  .tip-text { font-size: 12.5px; line-height: 1.6; color: rgba(255,255,255,0.75); }
+  .tip-text strong { color: #fff; display: block; margin-bottom: 2px; font-size: 13px; }
+
+  /* MAP TOOLTIP */
+  .map-open-hint { position: fixed; bottom: 20px; right: 20px; background: rgba(66,153,225,0.9); color: #fff; font-size: 12px; font-weight: 600; padding: 10px 18px; border-radius: 20px; pointer-events: none; opacity: 0; transition: opacity 0.3s; z-index: 999; }
+
+  .footer { text-align: center; padding: 30px; border-top: 1px solid rgba(255,255,255,0.06); color: rgba(255,255,255,0.2); font-size: 12px; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-tag">✈ TRAVEL GUIDE 2026</div>
+  <h1>가오슝 <span>4박 5일</span><br>완전 정복</h1>
+  <p class="hero-sub">June 2 – 6, 2026 · 高雄 Kaohsiung, Taiwan</p>
+  <div class="hero-badges">
+    <span class="badge">🌡 낮 최고 33°C</span>
+    <span class="badge">💧 습도 80~90%</span>
+    <span class="badge">🌧 매일 스콜</span>
+    <span class="badge">🛫 직항 3시간 10분</span>
+    <span class="badge">💳 비자 면제</span>
+  </div>
+</div>
+
+<div class="weather-bar">
+  <span>⚠️</span>
+  <strong>6월 핵심 전략</strong> — 오전 야외 명소 → 오후 12~15시 실내(냉방) → 저녁 야경·야시장 &nbsp;|&nbsp; 접이식 우산 + 얇은 긴팔 필수
+</div>
+
+<div class="container">
+
+  <!-- 일정표 -->
+  <div class="section-title"><span class="emoji">📅</span> 4박 5일 일정표</div>
+  <div class="itinerary">
+    <div class="day-card">
+      <div class="day-num">DAY 1</div>
+      <div class="day-date">6/2 월</div>
+      <div class="day-slot">
+        <div class="slot-label">오후</div>
+        <div class="slot-content">도착 + 체크인<br><strong>미려도역 빛의 돔</strong></div>
+        <a href="https://maps.google.com/?q=美麗島捷運站+高雄" target="_blank" class="slot-map-link">지도 보기</a>
+      </div>
+      <div class="day-slot">
+        <div class="slot-label">저녁</div>
+        <div class="slot-content"><strong>아이허 유람선</strong> 야경</div>
+        <a href="https://maps.google.com/?q=愛河遊船乘船處+高雄" target="_blank" class="slot-map-link">지도 보기</a>
+      </div>
+      <div class="day-slot">
+        <div class="slot-label">밤</div>
+        <div class="slot-content"><strong>류허 야시장</strong></div>
+        <a href="https://maps.google.com/?q=六合夜市+高雄" target="_blank" class="slot-map-link">지도 보기</a>
+      </div>
+    </div>
+    <div class="day-card">
+      <div class="day-num">DAY 2</div>
+      <div class="day-date">6/3 화</div>
+      <div class="day-slot">
+        <div class="slot-label">오전 (일찍)</div>
+        <div class="slot-content"><strong>치진섬</strong> 페리 5분</div>
+        <a href="https://maps.google.com/?q=旗津輪渡站+高雄" target="_blank" class="slot-map-link">지도 보기</a>
+      </div>
+      <div class="day-slot">
+        <div class="slot-label">오후</div>
+        <div class="slot-content"><strong>웨이우잉 문화센터</strong></div>
+        <a href="https://maps.google.com/?q=衛武營國家藝術文化中心+高雄" target="_blank" class="slot-map-link">지도 보기</a>
+      </div>
+      <div class="day-slot">
+        <div class="slot-label">저녁 일몰</div>
+        <div class="slot-content"><strong>다거우 영국 영사관</strong></div>
+        <a href="https://maps.google.com/?q=打狗英國領事館+高雄" target="_blank" class="slot-map-link">지도 보기</a>
+      </div>
+    </div>
+    <div class="day-card">
+      <div class="day-num">DAY 3</div>
+      <div class="day-date">6/4 수</div>
+      <div class="day-slot">
+        <div class="slot-label">이른 아침</div>
+        <div class="slot-content"><strong>연지담·용호탑</strong></div>
+        <a href="https://maps.google.com/?q=蓮池潭龍虎塔+高雄" target="_blank" class="slot-map-link">지도 보기</a>
+      </div>
+      <div class="day-slot">
+        <div class="slot-label">오후</div>
+        <div class="slot-content"><strong>불광산 불타기념관</strong></div>
+        <a href="https://maps.google.com/?q=佛光山佛陀紀念館+高雄" target="_blank" class="slot-map-link">지도 보기</a>
+      </div>
+      <div class="day-slot">
+        <div class="slot-label">저녁</div>
+        <div class="slot-content"><strong>보얼 예술특구</strong></div>
+        <a href="https://maps.google.com/?q=駁二藝術特區+高雄" target="_blank" class="slot-map-link">지도 보기</a>
+      </div>
+    </div>
+    <div class="day-card">
+      <div class="day-num">DAY 4</div>
+      <div class="day-date">6/5 목</div>
+      <div class="day-slot">
+        <div class="slot-label">오전~오후</div>
+        <div class="slot-content"><strong>타이난 당일치기</strong></div>
+        <a href="https://maps.google.com/?q=赤嵌樓+台南" target="_blank" class="slot-map-link">치칸러우 지도</a>
+      </div>
+      <div class="day-slot">
+        <div class="slot-label">저녁 🎉</div>
+        <div class="slot-content"><strong>루이펑 야시장</strong><br><span style="color:#ef4444;font-size:10px;">목요일 운영!</span></div>
+        <a href="https://maps.google.com/?q=瑞豐夜市+高雄" target="_blank" class="slot-map-link">지도 보기</a>
+      </div>
+    </div>
+    <div class="day-card">
+      <div class="day-num">DAY 5</div>
+      <div class="day-date">6/6 금</div>
+      <div class="day-slot">
+        <div class="slot-label">오전</div>
+        <div class="slot-content"><strong>흥륭거 탕바오</strong> 조식</div>
+        <a href="https://maps.google.com/?q=興隆居+高雄" target="_blank" class="slot-map-link">지도 보기</a>
+      </div>
+      <div class="day-slot">
+        <div class="slot-label">오전~낮</div>
+        <div class="slot-content">기념품 쇼핑<br>한신백화점</div>
+        <a href="https://maps.google.com/?q=漢神百貨+高雄" target="_blank" class="slot-map-link">지도 보기</a>
+      </div>
+      <div class="day-slot">
+        <div class="slot-label">오후</div>
+        <div class="slot-content">가오슝 공항 <strong>귀국 ✈</strong></div>
+        <a href="https://maps.google.com/?q=高雄國際機場" target="_blank" class="slot-map-link">지도 보기</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 명소 -->
+  <div class="section-title"><span class="emoji">🏛</span> 추천 명소 TOP 10 <span style="font-size:13px;font-weight:400;color:rgba(255,255,255,0.4);margin-left:8px;">클릭하면 구글맵 이동</span></div>
+  <div class="spots-grid">
+
+    <a href="https://maps.google.com/?q=美麗島捷運站+高雄" target="_blank" style="text-decoration:none;color:inherit;">
+    <div class="spot-card">
+      <div class="spot-rank">1</div>
+      <div class="spot-emoji">🌟</div>
+      <div class="spot-name">미려도역 빛의 돔</div>
+      <div class="spot-stars">★★★★★ 4.8</div>
+      <div class="spot-info">세계 최대 스테인드글라스<br>CNN 선정 가장 아름다운 역</div>
+      <div class="spot-price">무료</div>
+      <div class="map-hint">구글맵으로 보기</div>
+      <div class="must-go">MUST</div>
+    </div></a>
+
+    <a href="https://maps.google.com/?q=駁二藝術特區+高雄" target="_blank" style="text-decoration:none;color:inherit;">
+    <div class="spot-card">
+      <div class="spot-rank">2</div>
+      <div class="spot-emoji">🎨</div>
+      <div class="spot-name">보얼 예술특구</div>
+      <div class="spot-stars">★★★★★ 4.7</div>
+      <div class="spot-info">항구 창고→복합문화공간<br>경전철 대교 개폐 공연</div>
+      <div class="spot-price">무료</div>
+      <div class="map-hint">구글맵으로 보기</div>
+      <div class="must-go">MUST</div>
+    </div></a>
+
+    <a href="https://maps.google.com/?q=旗津輪渡站+高雄" target="_blank" style="text-decoration:none;color:inherit;">
+    <div class="spot-card">
+      <div class="spot-rank">3</div>
+      <div class="spot-emoji">🏝</div>
+      <div class="spot-name">치진섬</div>
+      <div class="spot-stars">★★★★★ 4.6</div>
+      <div class="spot-info">페리 5분 어촌 섬<br>무지개 교회·해산물 거리</div>
+      <div class="spot-price">페리 NT$25</div>
+      <div class="map-hint">구글맵으로 보기</div>
+      <div class="must-go">MUST</div>
+    </div></a>
+
+    <a href="https://maps.google.com/?q=打狗英國領事館+高雄" target="_blank" style="text-decoration:none;color:inherit;">
+    <div class="spot-card">
+      <div class="spot-rank">4</div>
+      <div class="spot-emoji">🌅</div>
+      <div class="spot-name">다거우 영국 영사관</div>
+      <div class="spot-stars">★★★★☆ 4.6</div>
+      <div class="spot-info">1879년 건립 최고령 서양 건물<br>일몰 뷰 핫플 (17:30 입장 추천)</div>
+      <div class="spot-price">NT$99</div>
+      <div class="map-hint">구글맵으로 보기</div>
+    </div></a>
+
+    <a href="https://maps.google.com/?q=蓮池潭龍虎塔+高雄" target="_blank" style="text-decoration:none;color:inherit;">
+    <div class="spot-card">
+      <div class="spot-rank">5</div>
+      <div class="spot-emoji">🐉</div>
+      <div class="spot-name">연지담·용호탑</div>
+      <div class="spot-stars">★★★★☆ 4.5</div>
+      <div class="spot-info">2025년 4월 리노베이션 완료<br>용 입→호랑이 입 액운 소멸</div>
+      <div class="spot-price">무료</div>
+      <div class="map-hint">구글맵으로 보기</div>
+    </div></a>
+
+    <a href="https://maps.google.com/?q=愛河遊船+高雄" target="_blank" style="text-decoration:none;color:inherit;">
+    <div class="spot-card">
+      <div class="spot-rank">6</div>
+      <div class="spot-emoji">🚢</div>
+      <div class="spot-name">아이허 유람선</div>
+      <div class="spot-stars">★★★★☆ 4.5</div>
+      <div class="spot-info">사랑의 강 야경 크루즈<br>19시 이후 조명 야경 최고</div>
+      <div class="spot-price">NT$150~200</div>
+      <div class="map-hint">구글맵으로 보기</div>
+    </div></a>
+
+    <a href="https://maps.google.com/?q=六合夜市+高雄" target="_blank" style="text-decoration:none;color:inherit;">
+    <div class="spot-card">
+      <div class="spot-rank">7</div>
+      <div class="spot-emoji">🌙</div>
+      <div class="spot-name">류허 야시장</div>
+      <div class="spot-stars">★★★★☆ 4.3</div>
+      <div class="spot-info">미려도역 11번출구 1분<br>매일 17:00~02:00 운영</div>
+      <div class="spot-price">무료 입장</div>
+      <div class="map-hint">구글맵으로 보기</div>
+      <div class="must-go">MUST</div>
+    </div></a>
+
+    <a href="https://maps.google.com/?q=瑞豐夜市+高雄" target="_blank" style="text-decoration:none;color:inherit;">
+    <div class="spot-card">
+      <div class="spot-rank">8</div>
+      <div class="spot-emoji">🎡</div>
+      <div class="spot-name">루이펑 야시장</div>
+      <div class="spot-stars">★★★★☆ 4.6</div>
+      <div class="spot-info">현지인 비율 80%+ 최대 야시장<br>⚠️ 목~일만 운영</div>
+      <div class="spot-price">무료 입장</div>
+      <div class="map-hint">구글맵으로 보기</div>
+    </div></a>
+
+    <a href="https://maps.google.com/?q=衛武營國家藝術文化中心+高雄" target="_blank" style="text-decoration:none;color:inherit;">
+    <div class="spot-card">
+      <div class="spot-rank">9</div>
+      <div class="spot-emoji">🎭</div>
+      <div class="spot-name">웨이우잉 문화센터</div>
+      <div class="spot-stars">★★★★★ 4.7</div>
+      <div class="spot-info">동남아 최대 공연예술센터<br>낮 더위 피하기 최고 실내</div>
+      <div class="spot-price">무료</div>
+      <div class="map-hint">구글맵으로 보기</div>
+    </div></a>
+
+    <a href="https://maps.google.com/?q=佛光山佛陀紀念館+高雄" target="_blank" style="text-decoration:none;color:inherit;">
+    <div class="spot-card">
+      <div class="spot-rank">10</div>
+      <div class="spot-emoji">🛕</div>
+      <div class="spot-name">불광산 불타기념관</div>
+      <div class="spot-stars">★★★★★ 4.8</div>
+      <div class="spot-info">대만 최대 불교 성지<br>시내에서 버스 40분</div>
+      <div class="spot-price">무료</div>
+      <div class="map-hint">구글맵으로 보기</div>
+    </div></a>
+
+  </div>
+
+  <!-- 맛집 -->
+  <div class="section-title"><span class="emoji">🍜</span> 맛집 가이드 <span style="font-size:13px;font-weight:400;color:rgba(255,255,255,0.4);margin-left:8px;">클릭하면 구글맵 이동</span></div>
+  <div class="food-grid">
+    <div class="food-category">
+      <div class="food-cat-title">🏆 현지인 단골 맛집</div>
+      <a href="https://maps.google.com/?q=港園牛肉麵+高雄鹽埕區" target="_blank" class="food-item">
+        <div><div class="food-name">강위엔 우육면 <span class="michelin">60년 老鋪</span></div><div class="food-stars" style="color:#ffc832;font-size:11px;margin-top:3px;">★★★★☆ 4.2 (리뷰 8,000+)</div><div class="food-menu">우육면 · 돼지발 비빔면</div><div class="food-map">📍 옌청푸역 근처</div></div>
+        <div class="food-price-tag">NT$120~160</div>
+      </a>
+      <a href="https://maps.google.com/?q=鴨肉珍+高雄鹽埕區" target="_blank" class="food-item">
+        <div><div class="food-name">야러우전 <span class="michelin">미슐랭 추천</span></div><div class="food-stars" style="color:#ffc832;font-size:11px;margin-top:3px;">★★★★☆ 4.3 (리뷰 8,000+)</div><div class="food-menu">오리고기밥 · 오리 당면</div><div class="food-map">📍 옌청푸역 5분</div></div>
+        <div class="food-price-tag">NT$60~80</div>
+      </a>
+      <a href="https://maps.google.com/?q=北港蔡三代筒仔米糕+高雄" target="_blank" class="food-item">
+        <div><div class="food-name">북강채삼대 <span class="michelin">빕 구르망</span></div><div class="food-stars" style="color:#ffc832;font-size:11px;margin-top:3px;">★★★★☆ 4.3 (리뷰 2,500+)</div><div class="food-menu">대나무통 찹쌀밥</div><div class="food-map">📍 옌청구</div></div>
+        <div class="food-price-tag">NT$50</div>
+      </a>
+      <a href="https://maps.google.com/?q=大溝頂虱目魚米粉湯+高雄" target="_blank" class="food-item">
+        <div><div class="food-name">大溝頂 시무위</div><div class="food-stars" style="color:#ffc832;font-size:11px;margin-top:3px;">★★★★☆ 4.3 (리뷰 3,000+)</div><div class="food-menu">밀크피시 국수 (05:30~)</div><div class="food-map">📍 신러제</div></div>
+        <div class="food-price-tag">NT$80~105</div>
+      </a>
+      <a href="https://maps.google.com/?q=廣東汕頭勝味牛肉店+高雄" target="_blank" class="food-item">
+        <div><div class="food-name">廣東汕頭 소고기</div><div class="food-stars" style="color:#ffc832;font-size:11px;margin-top:3px;">★★★☆☆ 3.8</div><div class="food-menu">신선 소고기 샤브샤브 (17:00~)</div><div class="food-map">📍 옌청구</div></div>
+        <div class="food-price-tag">NT$200~400</div>
+      </a>
+    </div>
+
+    <div class="food-category">
+      <div class="food-cat-title">🇰🇷 한국인 필수 코스</div>
+      <a href="https://maps.google.com/?q=興隆居+高雄" target="_blank" class="food-item">
+        <div><div class="food-name">흥륭거 <span class="michelin">조식 성지</span></div><div class="food-stars" style="color:#ffc832;font-size:11px;margin-top:3px;">★★★★☆ 4.2 (리뷰 6,300+)</div><div class="food-menu">탕바오 · 사오빙 (04:30~)</div><div class="food-map">📍 류허야시장 주변</div></div>
+        <div class="food-price-tag">NT$40~80</div>
+      </a>
+      <a href="https://maps.google.com/?q=老江紅茶牛奶+高雄" target="_blank" class="food-item">
+        <div><div class="food-name">라오지앙 밀크티</div><div class="food-stars" style="color:#ffc832;font-size:11px;margin-top:3px;">★★★★☆ 3.9 (리뷰 5,000+)</div><div class="food-menu">딴빙 · 홍차우유 (24시간)</div><div class="food-map">📍 신싱구</div></div>
+        <div class="food-price-tag">NT$30~60</div>
+      </a>
+      <a href="https://maps.google.com/?q=鼎泰豐+高雄左營" target="_blank" class="food-item">
+        <div><div class="food-name">딘타이펑 가오슝점</div><div class="food-stars" style="color:#ffc832;font-size:11px;margin-top:3px;">★★★★☆ 4.4 (리뷰 4,763)</div><div class="food-menu">샤오롱바오 · 새우볶음밥</div><div class="food-map">📍 한신아레나 내 (고속철도역)</div></div>
+        <div class="food-price-tag">NT$400~700</div>
+      </a>
+      <a href="https://maps.google.com/?q=北平楊寶寶蒸餃+高雄" target="_blank" class="food-item">
+        <div><div class="food-name">양바오바오 쩡자오 <span class="michelin">빕 구르망</span></div><div class="food-stars" style="color:#ffc832;font-size:11px;margin-top:3px;">★★★★☆ 4.4 (리뷰 12,000+)</div><div class="food-menu">찐만두 · 청돈 우육탕 (17:00~)</div><div class="food-map">📍 난쯔구</div></div>
+        <div class="food-price-tag">NT$30~100</div>
+      </a>
+      <a href="https://maps.google.com/?q=樺達奶茶+高雄鹽埕區" target="_blank" class="food-item">
+        <div><div class="food-name">화다 밀크티 본점</div><div class="food-stars" style="color:#ffc832;font-size:11px;margin-top:3px;">★★★★☆ 4.1 (리뷰 600+)</div><div class="food-menu">원조 밀크티 60년 전통</div><div class="food-map">📍 옌청구 신러제</div></div>
+        <div class="food-price-tag">NT$60</div>
+      </a>
+    </div>
+
+    <div class="food-category">
+      <div class="food-cat-title">🍡 가오슝 특산 음식</div>
+      <a href="https://maps.google.com/?q=六合夜市+高雄" target="_blank" class="food-item">
+        <div><div class="food-name">파파야 우유 (정라오파이)</div><div class="food-stars" style="color:#ffc832;font-size:11px;margin-top:3px;">★★★★☆ 4.2 (리뷰 800+)</div><div class="food-menu">가오슝 기원 원조</div><div class="food-map">📍 류허 야시장</div></div>
+        <div class="food-price-tag">NT$60~80</div>
+      </a>
+      <a href="https://maps.google.com/?q=瑞豐夜市+高雄" target="_blank" class="food-item">
+        <div><div class="food-name">천사 지파이 (대왕 닭튀김)</div><div class="food-stars" style="color:#ffc832;font-size:11px;margin-top:3px;">★★★★☆ 4.0 (리뷰 6,900+)</div><div class="food-menu">손바닥 2배 크기</div><div class="food-map">📍 루이펑 야시장</div></div>
+        <div class="food-price-tag">NT$100~110</div>
+      </a>
+      <a href="https://maps.google.com/?q=蚵仔煎+高雄" target="_blank" class="food-item">
+        <div><div class="food-name">굴전 (오아젠)</div><div class="food-menu">굴·계란·전분 지진 것</div><div class="food-map">📍 야시장 전역</div></div>
+        <div class="food-price-tag">NT$60~80</div>
+      </a>
+      <a href="https://maps.google.com/?q=老牌白糖粿+高雄" target="_blank" class="food-item">
+        <div><div class="food-name">바이탕구어</div><div class="food-stars" style="color:#ffc832;font-size:11px;margin-top:3px;">★★★★☆ 4.4</div><div class="food-menu">쌀떡 튀김, 가오슝 전통 간식</div><div class="food-map">📍 링야구</div></div>
+        <div class="food-price-tag">NT$20</div>
+      </a>
+      <a href="https://maps.google.com/?q=黃家粉圓冰+高雄" target="_blank" class="food-item">
+        <div><div class="food-name">흑설탕 분위안 빙수</div><div class="food-stars" style="color:#ffc832;font-size:11px;margin-top:3px;">★★★★☆ 4.3</div><div class="food-menu">타피오카 펄+빙수, 초저가</div><div class="food-map">📍 첸진구</div></div>
+        <div class="food-price-tag">NT$10~30</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- 야시장 -->
+  <div class="section-title"><span class="emoji">🌙</span> 야시장 완전 공략</div>
+  <div class="night-market-grid">
+    <div class="nm-card">
+      <div class="nm-title">🏮 <a href="https://maps.google.com/?q=六合夜市+高雄" target="_blank">류허 야시장 (六合夜市) ↗</a></div>
+      <div class="nm-info">📍 미려도역 11번출구 1분 &nbsp;|&nbsp; 🕔 매일 17:00~02:00</div>
+      <div class="nm-ok">✅ 매일 운영 — 접근성 최고, 관광객 친화적</div>
+      <div class="nm-food-list">
+        <span class="nm-food-chip">🥛 파파야우유</span>
+        <span class="nm-food-chip">🦪 굴전</span>
+        <span class="nm-food-chip">🦑 오징어 통구이</span>
+        <span class="nm-food-chip">🍤 가리비 당면 구이</span>
+        <span class="nm-food-chip">🍶 사탕수수 주스</span>
+        <span class="nm-food-chip">🍨 해산물 죽</span>
+      </div>
+    </div>
+    <div class="nm-card">
+      <div class="nm-title">🎪 <a href="https://maps.google.com/?q=瑞豐夜市+高雄" target="_blank">루이펑 야시장 (瑞豐夜市) ↗</a></div>
+      <div class="nm-info">📍 쥐단역 도보 5분 &nbsp;|&nbsp; 🕔 목~일 17:00~00:00</div>
+      <div class="nm-warning">⚠️ 월·화·수 휴무 — 6/5(목) 방문 가능</div>
+      <div class="nm-food-list">
+        <span class="nm-food-chip">🍗 천사 지파이</span>
+        <span class="nm-food-chip">🥐 소보로 크림빵</span>
+        <span class="nm-food-chip">🟡 고구마볼 튀김</span>
+        <span class="nm-food-chip">🧊 볶음 빙수</span>
+        <span class="nm-food-chip">🥩 철판 스테이크</span>
+        <span class="nm-food-chip">🍢 루웨이 꼬치</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 교통·숙소·항공 -->
+
+  <!-- 꿀팁 -->
+  <div class="section-title"><span class="emoji">✅</span> 실전 꿀팁</div>
+  <div class="tips-grid">
+    <div class="tip-card"><span class="tip-icon">💵</span><div class="tip-text"><strong>현금 필수</strong>야시장·로컬 맛집 90%가 현금 전용. NT$100짜리 충분히 준비</div></div>
+    <div class="tip-card"><span class="tip-icon">⏰</span><div class="tip-text"><strong>아침 맛집은 일찍</strong>흥륭거, 시무위 등은 10시 이전에 가야 줄 안 섬</div></div>
+    <div class="tip-card"><span class="tip-icon">🌧</span><div class="tip-text"><strong>스콜 대처법</strong>20~30분 내 그침. 편의점·카페서 대기. 우산 필수</div></div>
+    <div class="tip-card"><span class="tip-icon">🚫</span><div class="tip-text"><strong>육류 반입 절대 금지</strong>육포·소시지·햄 등 모두 해당. 위반 시 벌금 최대 100만원+</div></div>
+    <div class="tip-card"><span class="tip-icon">🚇</span><div class="tip-text"><strong>MRT 음식물 금지</strong>껌·물 포함 전면 금지. 위반 시 NT$1,500 벌금</div></div>
+    <div class="tip-card"><span class="tip-icon">🔥</span><div class="tip-text"><strong>한낮 12~15시 실내</strong>직사광선+습도 최강. 이 시간대 실내 냉방 명소 배치 필수</div></div>
+  </div>
+
+</div>
+
+<div class="footer">가오슝 여행 가이드 · June 2026 · 즐거운 여행 되세요! 🌴</div>
+
+</body>
+</html>
