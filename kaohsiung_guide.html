@@ -35,6 +35,8 @@
   .section-title { font-size: 22px; font-weight: 800; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; color: #3a2a1a; }
   .section-title .emoji { font-size: 26px; }
   .section-title::after { content: ''; flex: 1; height: 1px; background: rgba(180,130,80,0.28); margin-left: 12px; }
+  .section-title.has-toggle::after { display: none; }
+  .title-line { flex: 1; height: 1px; background: rgba(180,130,80,0.28); margin: 0 12px; }
 
   /* 일정표 */
   .itinerary { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 50px; }
@@ -55,8 +57,9 @@
   .slot-map-link:hover { color: #2860a0; }
 
   /* 명소 */
-  .spots-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 50px; }
-  .spot-card { background: #fffaf3; border: 1px solid rgba(180,130,80,0.2); border-radius: 14px; padding: 16px; position: relative; cursor: pointer; transition: all 0.2s; }
+  .spots-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 50px; align-items: stretch; }
+  .spots-grid > a { display: flex; height: 100%; text-decoration: none; color: inherit; }
+  .spot-card { background: #fffaf3; border: 1px solid rgba(180,130,80,0.2); border-radius: 14px; padding: 16px; position: relative; cursor: pointer; transition: all 0.2s; width: 100%; display: flex; flex-direction: column; }
   .spot-card:hover { border-color: rgba(74,127,168,0.45); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(180,130,80,0.15); }
   .spot-rank { position: absolute; top: 12px; right: 12px; background: rgba(192,104,32,0.12); color: #c06820; font-size: 11px; font-weight: 800; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
   .spot-emoji { font-size: 28px; margin-bottom: 8px; }
@@ -65,22 +68,29 @@
   .spot-info { font-size: 11px; color: rgba(58,42,26,0.55); line-height: 1.6; }
   .spot-price { display: inline-block; margin-top: 8px; background: rgba(46,120,88,0.12); color: #2a7858; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px; }
   .must-go { position: absolute; bottom: 12px; right: 12px; background: rgba(192,70,50,0.1); color: #c04838; font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 4px; letter-spacing: 1px; }
-  .map-hint { font-size: 10px; color: #4a7fa8; margin-top: 6px; display: flex; align-items: center; gap: 3px; }
+  .map-hint { font-size: 10px; color: #4a7fa8; margin-top: 6px; display: flex; align-items: center; gap: 3px; padding-bottom: 2px; }
   .map-hint::before { content: '📍'; font-size: 10px; }
+  .spot-dist { font-size: 10px; color: #2a7858; font-weight: 600; margin-top: auto; background: rgba(46,120,88,0.08); border-radius: 5px; padding: 4px 8px; display: flex; align-items: center; justify-content: space-between; width: 100%; box-sizing: border-box; }
+  .dist-nav { font-size: 11px; color: #fff; font-weight: 700; background: #4a7fa8; border-radius: 6px; padding: 4px 10px; text-decoration: none; flex-shrink: 0; display: inline-flex; align-items: center; min-height: 26px; white-space: nowrap; }
+  .dist-nav:hover { background: #2860a0; }
+  .spot-dist span, .food-dist span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-right: 8px; }
 
   /* 맛집 */
   .food-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 30px; }
   .food-category { background: #fffaf3; border: 1px solid rgba(180,130,80,0.2); border-radius: 16px; padding: 22px; }
   .food-cat-title { font-size: 14px; font-weight: 800; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid rgba(180,130,80,0.25); display: flex; align-items: center; gap: 8px; color: #3a2a1a; }
-  .food-item { display: flex; justify-content: space-between; align-items: flex-start; padding: 9px 6px; border-bottom: 1px solid rgba(180,130,80,0.18); gap: 8px; cursor: pointer; border-radius: 8px; transition: all 0.2s; text-decoration: none; color: inherit; }
+  .food-item { display: flex; flex-direction: column; padding: 9px 6px 46px; border-bottom: 1px solid rgba(180,130,80,0.18); cursor: pointer; border-radius: 8px; transition: all 0.2s; text-decoration: none; color: inherit; position: relative; }
   .food-item:hover { background: rgba(74,127,168,0.07); }
   .food-item:last-child { border-bottom: none; }
   .food-name { font-size: 12.5px; font-weight: 600; line-height: 1.4; color: #3a2a1a; }
   .food-menu { font-size: 11px; color: rgba(58,42,26,0.5); margin-top: 2px; }
   .food-stars { color: #c06820; font-size: 11px; margin-top: 3px; }
-  .food-price-tag { font-size: 11px; font-weight: 700; color: #2a7858; white-space: nowrap; margin-top: 2px; flex-shrink: 0; }
+  .food-item > div:first-child { padding-right: 70px; }
+  .food-map { font-size: 10px; color: rgba(58,42,26,0.45); margin-top: 3px; display: flex; align-items: center; gap: 2px; }
+  .food-price-tag { font-size: 11px; font-weight: 700; color: #2a7858; white-space: nowrap; position: absolute; top: 9px; right: 6px; }
   .michelin { color: #c04838; font-size: 10px; font-weight: 800; }
   .food-map { font-size: 10px; color: #4a7fa8; margin-top: 3px; display: flex; align-items: center; gap: 3px; }
+  .food-dist { position: absolute; bottom: 7px; left: 6px; right: 6px; font-size: 10px; color: #2a7858; font-weight: 600; background: rgba(46,120,88,0.08); border-radius: 5px; padding: 4px 8px; display: flex; align-items: center; justify-content: space-between; }
 
   /* 야시장 */
   .night-market-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 50px; }
@@ -114,11 +124,22 @@
 
   .footer { text-align: center; padding: 30px; border-top: 1px solid rgba(180,130,80,0.2); color: rgba(58,42,26,0.35); font-size: 12px; }
 
+  /* 거리 토글 필 — 섹션 타이틀 안 */
+  .dist-toggle-pill { display: inline-flex; background: rgba(90,138,106,0.16); border: 1px solid rgba(90,138,106,0.32); border-radius: 20px; padding: 3px; gap: 0; flex-shrink: 0; }
+  .dist-toggle-pill button { border: none; background: transparent; color: rgba(58,42,26,0.42); font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 16px; cursor: pointer; transition: all 0.18s; white-space: nowrap; font-family: inherit; }
+  .dist-toggle-pill button.active-tab { background: rgba(255,255,255,0.92); color: #3a5c30; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+
+  /* 숙소 정보 바 */
+  .hotel-bar { background: linear-gradient(90deg, #7a9e7e, #5a8a6a); padding: 12px 40px; display: flex; align-items: center; gap: 16px; font-size: 13px; font-weight: 500; flex-wrap: wrap; color: #fff; }
+  .hotel-bar .hotel-name { font-weight: 800; font-size: 15px; color: #fff8e0; }
+  .hotel-bar .hotel-sep { opacity: 0.4; }
+  .hotel-bar .hotel-info { opacity: 0.92; }
+
   /* ===== 반응형 ===== */
 
   /* 태블릿 가로 / 큰 화면 */
   @media (max-width: 900px) {
-    .spots-grid { grid-template-columns: repeat(3, 1fr); }
+    .spots-grid { grid-template-columns: repeat(2, 1fr); }
     .itinerary { grid-template-columns: repeat(3, 1fr); }
     .tips-grid { grid-template-columns: 1fr 1fr 1fr; }
   }
@@ -161,14 +182,18 @@
     .food-stars { font-size: 11px; }
     .food-category { padding: 18px 16px; }
 
-    /* 맛집 가격 줄바꿈 */
-    .food-item { flex-wrap: wrap; gap: 4px; }
-    .food-price-tag { width: 100%; text-align: left; font-size: 12px; padding-top: 2px; }
+    /* 맛집 가격 */
+    .food-price-tag { font-size: 12px; }
 
     /* 교통정보 줄바꿈 */
     .info-row { flex-wrap: wrap; gap: 2px; padding: 10px 0; }
     .info-label { width: 100%; font-size: 11px; }
     .info-value { width: 100%; text-align: left; font-size: 13px; font-weight: 700; }
+  }
+
+  /* 일반 스마트폰 — 토글 소형화 */
+  @media (max-width: 600px) {
+    .dist-toggle-pill button { font-size: 10px; padding: 3px 8px; }
   }
 
   /* 소형 스마트폰 */
@@ -180,7 +205,10 @@
     .badge { font-size: 11px; padding: 5px 10px; }
     .weather-bar { font-size: 12px; line-height: 1.8; }
     .container { padding: 20px 12px; }
-    .section-title { font-size: 16px; }
+    .section-title { font-size: 16px; flex-wrap: wrap; }
+    .section-title::after { display: none; }
+    .dist-toggle-pill { margin-left: 0; }
+    .dist-toggle-pill button { font-size: 10px; padding: 3px 7px; }
 
     /* 명소: 1열 */
     .spots-grid { grid-template-columns: 1fr; gap: 8px; }
@@ -231,135 +259,144 @@
   <strong>6월 핵심 전략</strong> — 오전 야외 → 오후 12~15시 실내(냉방) → 저녁 야경·야시장 &nbsp;|&nbsp; 접이식 우산 + 얇은 긴팔 필수
 </div>
 
+<div class="hotel-bar">
+  <span>🏨</span>
+  <span class="hotel-name">쿵샹 디자인 호텔</span>
+  <span class="hotel-sep">|</span>
+  <span class="hotel-info">📍 신싱구 린썬이루 237 · 미려도역 도보 7~10분 · 류허야시장 도보 5분</span>
+</div>
+
 <div class="container">
 
 
-  <div class="section-title"><span class="emoji">🏛</span> 추천 명소 TOP 15 <span style="font-size:13px;font-weight:400;color:rgba(58,42,26,0.4);margin-left:8px;">클릭 → 구글맵</span></div>
+  <div class="section-title has-toggle"><span class="emoji">🏛</span> 추천 명소 TOP 16 <span style="font-size:13px;font-weight:400;color:rgba(58,42,26,0.4);margin-left:4px;">클릭→구글맵</span><span class="title-line"></span><div class="dist-toggle-pill"><button class="btn-hotel active-tab" onclick="switchMode('hotel')">🏨 숙소</button><button class="btn-me" onclick="switchMode('me')">📍 내 위치</button></div></div>
   <div class="spots-grid">
     <a href="https://maps.google.com/?q=美麗島捷運站+高雄" target="_blank" style="text-decoration:none;color:inherit;">
-    <div class="spot-card"><div class="spot-rank">1</div><div class="spot-emoji">🌟</div><div class="spot-name">미려도역 빛의 돔</div><div class="spot-stars">★★★★★ 4.8</div><div class="spot-info">세계 최대 스테인드글라스<br>CNN 선정 가장 아름다운 역</div><div class="spot-price">무료</div><div class="map-hint">구글맵으로 보기</div><div class="must-go">MUST</div></div></a>
+    <div class="spot-card"><div class="spot-rank">1</div><div class="spot-emoji">🌟</div><div class="spot-name">미려도역 빛의 돔</div><div class="spot-stars">★★★★★ 4.8</div><div class="spot-info">세계 최대 스테인드글라스<br>CNN 선정 가장 아름다운 역</div><div class="spot-price">무료</div><div class="spot-dist">🚶 도보 7~10분</div><div class="map-hint">구글맵으로 보기</div><div class="must-go">MUST</div></div></a>
     <a href="https://maps.google.com/?q=駁二藝術特區+高雄" target="_blank" style="text-decoration:none;color:inherit;">
-    <div class="spot-card"><div class="spot-rank">2</div><div class="spot-emoji">🎨</div><div class="spot-name">보얼 예술특구</div><div class="spot-stars">★★★★★ 4.7</div><div class="spot-info">항구 창고→복합문화공간<br>경전철 대교 개폐 공연</div><div class="spot-price">무료</div><div class="map-hint">구글맵으로 보기</div><div class="must-go">MUST</div></div></a>
+    <div class="spot-card"><div class="spot-rank">2</div><div class="spot-emoji">🎨</div><div class="spot-name">보얼 예술특구</div><div class="spot-stars">★★★★★ 4.7</div><div class="spot-info">항구 창고→복합문화공간<br>경전철 대교 개폐 공연</div><div class="spot-price">무료</div><div class="spot-dist">🚇 MRT 옌청푸역 하차 도보 5분 (약 15분)</div><div class="map-hint">구글맵으로 보기</div><div class="must-go">MUST</div></div></a>
     <a href="https://maps.google.com/?q=旗津輪渡站+高雄" target="_blank" style="text-decoration:none;color:inherit;">
-    <div class="spot-card"><div class="spot-rank">3</div><div class="spot-emoji">🏝</div><div class="spot-name">치진섬</div><div class="spot-stars">★★★★★ 4.6</div><div class="spot-info">페리 5분 어촌 섬<br>무지개 교회·해산물 거리</div><div class="spot-price">페리 NT$25</div><div class="map-hint">구글맵으로 보기</div><div class="must-go">MUST</div></div></a>
+    <div class="spot-card"><div class="spot-rank">3</div><div class="spot-emoji">🏝</div><div class="spot-name">치진섬</div><div class="spot-stars">★★★★★ 4.6</div><div class="spot-info">페리 5분 어촌 섬<br>무지개 교회·해산물 거리</div><div class="spot-price">페리 NT$25</div><div class="spot-dist">🚇 MRT 하마싱역→도보6분→구산페리 승선 약 25분</div><div class="map-hint">구글맵으로 보기</div><div class="must-go">MUST</div></div></a>
     <a href="https://maps.google.com/?q=打狗英國領事館+高雄" target="_blank" style="text-decoration:none;color:inherit;">
-    <div class="spot-card"><div class="spot-rank">4</div><div class="spot-emoji">🌅</div><div class="spot-name">다거우 영국 영사관</div><div class="spot-stars">★★★★☆ 4.6</div><div class="spot-info">1879년 건립 최고령 서양 건물<br>일몰 뷰 핫플 (17:30 추천)</div><div class="spot-price">NT$99</div><div class="map-hint">구글맵으로 보기</div></div></a>
+    <div class="spot-card"><div class="spot-rank">4</div><div class="spot-emoji">🌅</div><div class="spot-name">다거우 영국 영사관</div><div class="spot-stars">★★★★☆ 4.6</div><div class="spot-info">1879년 건립 최고령 서양 건물<br>일몰 뷰 핫플 (17:30 추천)</div><div class="spot-price">NT$99</div><div class="spot-dist">🚇 MRT 하마싱역 도보 10~12분 (약 25분)</div><div class="map-hint">구글맵으로 보기</div></div></a>
     <a href="https://maps.google.com/?q=蓮池潭龍虎塔+高雄" target="_blank" style="text-decoration:none;color:inherit;">
-    <div class="spot-card"><div class="spot-rank">5</div><div class="spot-emoji">🐉</div><div class="spot-name">연지담·용호탑</div><div class="spot-stars">★★★★☆ 4.5</div><div class="spot-info">2025년 4월 리노베이션 완료<br>용 입→호랑이 입 액운 소멸</div><div class="spot-price">무료</div><div class="map-hint">구글맵으로 보기</div></div></a>
+    <div class="spot-card"><div class="spot-rank">5</div><div class="spot-emoji">🐉</div><div class="spot-name">연지담·용호탑</div><div class="spot-stars">★★★★☆ 4.5</div><div class="spot-info">2025년 4월 리노베이션 완료<br>용 입→호랑이 입 액운 소멸</div><div class="spot-price">무료</div><div class="spot-dist">🚇 MRT 쭤잉역 도보 20~25분 (약 35분)</div><div class="map-hint">구글맵으로 보기</div></div></a>
     <a href="https://maps.google.com/?q=愛河遊船+高雄" target="_blank" style="text-decoration:none;color:inherit;">
-    <div class="spot-card"><div class="spot-rank">6</div><div class="spot-emoji">🚢</div><div class="spot-name">아이허 유람선</div><div class="spot-stars">★★★★☆ 4.5</div><div class="spot-info">사랑의 강 야경 크루즈<br>19시 이후 야경 최고</div><div class="spot-price">NT$150~200</div><div class="map-hint">구글맵으로 보기</div></div></a>
+    <div class="spot-card"><div class="spot-rank">6</div><div class="spot-emoji">🚢</div><div class="spot-name">아이허 유람선</div><div class="spot-stars">★★★★☆ 4.5</div><div class="spot-info">사랑의 강 야경 크루즈<br>19시 이후 야경 최고</div><div class="spot-price">NT$150~200</div><div class="spot-dist">🚇 MRT 시의회역 도보 10~11분 (약 20분)</div><div class="map-hint">구글맵으로 보기</div></div></a>
     <a href="https://maps.google.com/?q=六合夜市+高雄" target="_blank" style="text-decoration:none;color:inherit;">
-    <div class="spot-card"><div class="spot-rank">7</div><div class="spot-emoji">🌙</div><div class="spot-name">류허 야시장</div><div class="spot-stars">★★★★☆ 4.3</div><div class="spot-info">미려도역 11번출구 1분<br>매일 17:00~02:00</div><div class="spot-price">무료 입장</div><div class="map-hint">구글맵으로 보기</div><div class="must-go">MUST</div></div></a>
+    <div class="spot-card"><div class="spot-rank">7</div><div class="spot-emoji">🌙</div><div class="spot-name">류허 야시장</div><div class="spot-stars">★★★★☆ 4.3</div><div class="spot-info">미려도역 11번출구 1분<br>매일 17:00~02:00</div><div class="spot-price">무료 입장</div><div class="spot-dist">🚶 도보 5분</div><div class="map-hint">구글맵으로 보기</div><div class="must-go">MUST</div></div></a>
     <a href="https://maps.google.com/?q=瑞豐夜市+高雄" target="_blank" style="text-decoration:none;color:inherit;">
-    <div class="spot-card"><div class="spot-rank">8</div><div class="spot-emoji">🎡</div><div class="spot-name">루이펑 야시장</div><div class="spot-stars">★★★★☆ 4.6</div><div class="spot-info">현지인 비율 80%+<br>⚠️ 목~일만 운영</div><div class="spot-price">무료 입장</div><div class="map-hint">구글맵으로 보기</div></div></a>
+    <div class="spot-card"><div class="spot-rank">8</div><div class="spot-emoji">🎡</div><div class="spot-name">루이펑 야시장</div><div class="spot-stars">★★★★☆ 4.6</div><div class="spot-info">현지인 비율 80%+<br>⚠️ 목~일만 운영</div><div class="spot-price">무료 입장</div><div class="spot-dist">🚇 MRT 가오슝아레나역 도보 3분 (약 18분)</div><div class="map-hint">구글맵으로 보기</div></div></a>
     <a href="https://maps.google.com/?q=衛武營國家藝術文化中心+高雄" target="_blank" style="text-decoration:none;color:inherit;">
-    <div class="spot-card"><div class="spot-rank">9</div><div class="spot-emoji">🎭</div><div class="spot-name">웨이우잉 문화센터</div><div class="spot-stars">★★★★★ 4.7</div><div class="spot-info">동남아 최대 공연예술센터<br>낮 더위 피하기 최고 실내</div><div class="spot-price">무료</div><div class="map-hint">구글맵으로 보기</div></div></a>
+    <div class="spot-card"><div class="spot-rank">9</div><div class="spot-emoji">🎭</div><div class="spot-name">웨이우잉 문화센터</div><div class="spot-stars">★★★★★ 4.7</div><div class="spot-info">동남아 최대 공연예술센터<br>낮 더위 피하기 최고 실내</div><div class="spot-price">무료</div><div class="spot-dist">🚇 MRT 웨이우잉역 도보 1분 (약 22분)</div><div class="map-hint">구글맵으로 보기</div></div></a>
     <a href="https://maps.google.com/?q=佛光山佛陀紀念館+高雄" target="_blank" style="text-decoration:none;color:inherit;">
-    <div class="spot-card"><div class="spot-rank">10</div><div class="spot-emoji">🛕</div><div class="spot-name">불광산 불타기념관</div><div class="spot-stars">★★★★★ 4.8</div><div class="spot-info">대만 최대 불교 성지<br>시내에서 버스 40분</div><div class="spot-price">무료</div><div class="map-hint">구글맵으로 보기</div></div></a>
+    <div class="spot-card"><div class="spot-rank">10</div><div class="spot-emoji">🛕</div><div class="spot-name">불광산 불타기념관</div><div class="spot-stars">★★★★★ 4.8</div><div class="spot-info">대만 최대 불교 성지<br>시내에서 버스 40분</div><div class="spot-price">무료</div><div class="spot-dist">🚌 MRT 쭤잉역→전용버스 약 30분 (총 45~50분)</div><div class="map-hint">구글맵으로 보기</div></div></a>
     <a href="https://maps.google.com/?q=高雄85大樓+高雄" target="_blank" style="text-decoration:none;color:inherit;">
-    <div class="spot-card"><div class="spot-rank">11</div><div class="spot-emoji">🏙</div><div class="spot-name">85 스카이타워</div><div class="spot-stars">★★★★☆ 4.3</div><div class="spot-info">348m 가오슝 랜드마크<br>전망대 야경 포토스팟</div><div class="spot-price">NT$200</div><div class="map-hint">구글맵으로 보기</div></div></a>
+    <div class="spot-card"><div class="spot-rank">11</div><div class="spot-emoji">🏙</div><div class="spot-name">85 스카이타워</div><div class="spot-stars">★★★★☆ 4.3</div><div class="spot-info">348m 가오슝 랜드마크<br>전망대 야경 포토스팟</div><div class="spot-price">NT$200</div><div class="spot-dist">🚇 MRT 산두쇼핑역 도보 8~10분 (약 20분)</div><div class="map-hint">구글맵으로 보기</div></div></a>
     <a href="https://maps.google.com/?q=旗津海水浴場+高雄" target="_blank" style="text-decoration:none;color:inherit;">
-    <div class="spot-card"><div class="spot-rank">12</div><div class="spot-emoji">🏖</div><div class="spot-name">치진 해수욕장</div><div class="spot-stars">★★★★☆ 4.2</div><div class="spot-info">치진섬 북쪽 해변<br>등대·조개껍질 해변 산책로</div><div class="spot-price">무료</div><div class="map-hint">구글맵으로 보기</div></div></a>
+    <div class="spot-card"><div class="spot-rank">12</div><div class="spot-emoji">🏖</div><div class="spot-name">치진 해수욕장</div><div class="spot-stars">★★★★☆ 4.2</div><div class="spot-info">치진섬 북쪽 해변<br>등대·조개껍질 해변 산책로</div><div class="spot-price">무료</div><div class="spot-dist">🚇 MRT 하마싱역→페리→도보 약 30~35분</div><div class="map-hint">구글맵으로 보기</div></div></a>
     <a href="https://maps.google.com/?q=高雄市立美術館" target="_blank" style="text-decoration:none;color:inherit;">
-    <div class="spot-card"><div class="spot-rank">13</div><div class="spot-emoji">🖼</div><div class="spot-name">가오슝 시립미술관</div><div class="spot-stars">★★★★☆ 4.5</div><div class="spot-info">넓은 호수공원과 함께<br>더위 피하기 최적 실내 산책</div><div class="spot-price">무료</div><div class="map-hint">구글맵으로 보기</div></div></a>
+    <div class="spot-card"><div class="spot-rank">13</div><div class="spot-emoji">🖼</div><div class="spot-name">가오슝 시립미술관</div><div class="spot-stars">★★★★☆ 4.5</div><div class="spot-info">넓은 호수공원과 함께<br>더위 피하기 최적 실내 산책</div><div class="spot-price">무료</div><div class="spot-dist">🚋 경전철(LRT) 미술관역 하차 (약 30~35분)</div><div class="map-hint">구글맵으로 보기</div></div></a>
     <a href="https://maps.google.com/?q=三鳳宮+高雄" target="_blank" style="text-decoration:none;color:inherit;">
-    <div class="spot-card"><div class="spot-rank">14</div><div class="spot-emoji">🏮</div><div class="spot-name">삼봉궁</div><div class="spot-stars">★★★★☆ 4.4</div><div class="spot-info">화려한 대만 전통 사원<br>주변 건어물·약재 시장 볼거리</div><div class="spot-price">무료</div><div class="map-hint">구글맵으로 보기</div></div></a>
+    <div class="spot-card"><div class="spot-rank">14</div><div class="spot-emoji">🏮</div><div class="spot-name">삼봉궁</div><div class="spot-stars">★★★★☆ 4.4</div><div class="spot-info">화려한 대만 전통 사원<br>주변 건어물·약재 시장 볼거리</div><div class="spot-price">무료</div><div class="spot-dist">🚇 MRT 미려도역 도보 15분 (약 22분)</div><div class="map-hint">구글맵으로 보기</div></div></a>
     <a href="https://maps.google.com/?q=左營舊城+高雄" target="_blank" style="text-decoration:none;color:inherit;">
-    <div class="spot-card"><div class="spot-rank">15</div><div class="spot-emoji">🏯</div><div class="spot-name">쭤잉 고성</div><div class="spot-stars">★★★★☆ 4.3</div><div class="spot-info">청나라 시대 성벽 유적<br>연지담과 도보 10분 거리</div><div class="spot-price">무료</div><div class="map-hint">구글맵으로 보기</div></div></a>
+    <div class="spot-card"><div class="spot-rank">15</div><div class="spot-emoji">🏯</div><div class="spot-name">쭤잉 고성</div><div class="spot-stars">★★★★☆ 4.3</div><div class="spot-info">청나라 시대 성벽 유적<br>연지담과 도보 10분 거리</div><div class="spot-price">무료</div><div class="spot-dist">🚇 MRT 쭤잉역 도보 15~20분 (약 35분)</div><div class="map-hint">구글맵으로 보기</div></div></a>
+    <a href="https://maps.google.com/?q=國立中山大學+西子灣+高雄" target="_blank" style="text-decoration:none;color:inherit;">
+    <div class="spot-card"><div class="spot-rank">16</div><div class="spot-emoji">🌊</div><div class="spot-name">국립 중산대학교 & 시즈완</div><div class="spot-stars">★★★★☆ 4.5</div><div class="spot-info">오션뷰 캠퍼스 무료 산책<br>일몰 명당·영사관과 도보 5분</div><div class="spot-price">무료</div><div class="spot-dist">🚇 MRT 하마싱역 도보 15~20분 (약 30분)</div><div class="map-hint">구글맵으로 보기</div></div></a>
   </div>
 
-  <div class="section-title"><span class="emoji">🍜</span> 맛집 가이드 <span style="font-size:13px;font-weight:400;color:rgba(58,42,26,0.4);margin-left:8px;">클릭 → 구글맵</span></div>
+  <div class="section-title has-toggle"><span class="emoji">🍜</span> 맛집 가이드 <span style="font-size:13px;font-weight:400;color:rgba(58,42,26,0.4);margin-left:4px;">클릭→구글맵</span><span class="title-line"></span><div class="dist-toggle-pill"><button class="btn-hotel active-tab" onclick="switchMode('hotel')">🏨 숙소</button><button class="btn-me" onclick="switchMode('me')">📍 내 위치</button></div></div>
   <div class="food-grid">
     <div class="food-category">
       <div class="food-cat-title">🏆 현지인 단골 맛집</div>
       <a href="https://maps.google.com/?q=港園牛肉麵+高雄鹽埕區" target="_blank" class="food-item">
-        <div><div class="food-name">강위엔 우육면 <span class="michelin">60년 老鋪</span></div><div class="food-menu">우육면 · 돼지발 비빔면</div><div class="food-stars">★★★★☆ 4.2 (리뷰 8,000+)</div><div class="food-map">📍 옌청푸역 근처</div></div>
+        <div><div class="food-name">강위엔 우육면 <span class="michelin">60년 老鋪</span></div><div class="food-menu">우육면 · 돼지발 비빔면</div><div class="food-stars">★★★★☆ 4.2 (리뷰 8,000+)</div><div class="food-map">📍 옌청푸역 근처</div><div class="food-dist">🚇 MRT 옌청푸역 하차 도보 10분 (총 약 17분)</div></div>
         <div class="food-price-tag">NT$120~160</div>
       </a>
       <a href="https://maps.google.com/?q=鴨肉珍+高雄鹽埕區" target="_blank" class="food-item">
-        <div><div class="food-name">야러우전 <span class="michelin">미슐랭 추천</span></div><div class="food-menu">오리고기밥 · 오리 당면</div><div class="food-stars">★★★★☆ 4.3 (리뷰 8,000+)</div><div class="food-map">📍 옌청푸역 5분</div></div>
+        <div><div class="food-name">야러우전 <span class="michelin">미슐랭 추천</span></div><div class="food-menu">오리고기밥 · 오리 당면</div><div class="food-stars">★★★★☆ 4.3 (리뷰 8,000+)</div><div class="food-map">📍 옌청푸역 5분</div><div class="food-dist">🚇 MRT 옌청푸역 도보 5분 (총 약 12분)</div></div>
         <div class="food-price-tag">NT$60~80</div>
       </a>
       <a href="https://maps.google.com/?q=北港蔡三代筒仔米糕+高雄" target="_blank" class="food-item">
-        <div><div class="food-name">북강채삼대 <span class="michelin">빕 구르망</span></div><div class="food-menu">대나무통 찹쌀밥</div><div class="food-stars">★★★★☆ 4.3 (리뷰 2,500+)</div><div class="food-map">📍 옌청구</div></div>
+        <div><div class="food-name">북강채삼대 <span class="michelin">빕 구르망</span></div><div class="food-menu">대나무통 찹쌀밥</div><div class="food-stars">★★★★☆ 4.3 (리뷰 2,500+)</div><div class="food-map">📍 옌청구</div><div class="food-dist">🚇 MRT 옌청푸역 도보 약 8분 (총 약 15분)</div></div>
         <div class="food-price-tag">NT$50</div>
       </a>
       <a href="https://maps.google.com/?q=大溝頂虱目魚米粉湯+高雄" target="_blank" class="food-item">
-        <div><div class="food-name">大溝頂 시무위</div><div class="food-menu">밀크피시 국수 (05:30~)</div><div class="food-stars">★★★★☆ 4.3 (리뷰 3,000+)</div><div class="food-map">📍 신러제</div></div>
+        <div><div class="food-name">大溝頂 시무위</div><div class="food-menu">밀크피시 국수 (05:30~)</div><div class="food-stars">★★★★☆ 4.3 (리뷰 3,000+)</div><div class="food-map">📍 신러제 (옌청구)</div><div class="food-dist">🚇 MRT 옌청푸역 도보 약 5분 (총 약 12분)</div></div>
         <div class="food-price-tag">NT$80~105</div>
       </a>
       <a href="https://maps.google.com/?q=廣東汕頭勝味牛肉店+高雄" target="_blank" class="food-item">
-        <div><div class="food-name">廣東汕頭 소고기</div><div class="food-menu">신선 소고기 샤브샤브 (17:00~)</div><div class="food-stars">★★★☆☆ 3.8</div><div class="food-map">📍 옌청구</div></div>
+        <div><div class="food-name">廣東汕頭 소고기</div><div class="food-menu">신선 소고기 샤브샤브 (17:00~)</div><div class="food-stars">★★★☆☆ 3.8</div><div class="food-map">📍 옌청구</div><div class="food-dist">🚇 MRT 옌청푸역 도보 약 8분 (총 약 15분)</div></div>
         <div class="food-price-tag">NT$200~400</div>
       </a>
       <a href="https://maps.google.com/?q=萬里香餛飩大王+高雄" target="_blank" class="food-item">
-        <div><div class="food-name">완리샹 훈툰 <span class="michelin">50년 老鋪</span></div><div class="food-menu">새우완탕 · 완탕면</div><div class="food-stars">★★★★☆ 4.3 (리뷰 3,200+)</div><div class="food-map">📍 첸진구</div></div>
+        <div><div class="food-name">완리샹 훈툰 <span class="michelin">50년 老鋪</span></div><div class="food-menu">새우완탕 · 완탕면</div><div class="food-stars">★★★★☆ 4.3 (리뷰 3,200+)</div><div class="food-map">📍 첸진구</div><div class="food-dist">🚇 MRT 첸진역 도보 약 10분 (총 약 20분)</div></div>
         <div class="food-price-tag">NT$50~80</div>
       </a>
       <a href="https://maps.google.com/?q=鳳山肉圓+高雄" target="_blank" class="food-item">
-        <div><div class="food-name">봉산 바완</div><div class="food-menu">쌀경단 튀김 (가오슝 스타일)</div><div class="food-stars">★★★★☆ 4.2 (리뷰 1,800+)</div><div class="food-map">📍 펑산구</div></div>
+        <div><div class="food-name">봉산 바완</div><div class="food-menu">쌀경단 튀김 (가오슝 스타일)</div><div class="food-stars">★★★★☆ 4.2 (리뷰 1,800+)</div><div class="food-map">📍 펑산구</div><div class="food-dist">🚇 MRT 펑산역 하차 도보 약 10분 (총 약 30분)</div></div>
         <div class="food-price-tag">NT$40~60</div>
       </a>
     </div>
     <div class="food-category">
       <div class="food-cat-title">🇰🇷 한국인 필수 코스</div>
       <a href="https://maps.google.com/?q=興隆居+高雄" target="_blank" class="food-item">
-        <div><div class="food-name">흥륭거 <span class="michelin">조식 성지</span></div><div class="food-menu">탕바오 · 사오빙 (04:30~)</div><div class="food-stars">★★★★☆ 4.2 (리뷰 6,300+)</div><div class="food-map">📍 류허야시장 주변</div></div>
+        <div><div class="food-name">흥륭거 <span class="michelin">조식 성지</span></div><div class="food-menu">탕바오 · 사오빙 (04:30~)</div><div class="food-stars">★★★★☆ 4.2 (리뷰 6,300+)</div><div class="food-map">📍 류허야시장 주변</div><div class="food-dist">🚶 도보 약 7분</div></div>
         <div class="food-price-tag">NT$40~80</div>
       </a>
       <a href="https://maps.google.com/?q=老江紅茶牛奶+高雄" target="_blank" class="food-item">
-        <div><div class="food-name">라오지앙 밀크티</div><div class="food-menu">딴빙 · 홍차우유 (24시간)</div><div class="food-stars">★★★★☆ 3.9 (리뷰 5,000+)</div><div class="food-map">📍 신싱구</div></div>
+        <div><div class="food-name">라오지앙 밀크티</div><div class="food-menu">딴빙 · 홍차우유 (24시간)</div><div class="food-stars">★★★★☆ 3.9 (리뷰 5,000+)</div><div class="food-map">📍 신싱구 (미려도역 인근)</div><div class="food-dist">🚶 도보 약 5분</div></div>
         <div class="food-price-tag">NT$30~60</div>
       </a>
       <a href="https://maps.google.com/?q=鼎泰豐+高雄左營" target="_blank" class="food-item">
-        <div><div class="food-name">딘타이펑 가오슝점</div><div class="food-menu">샤오롱바오 · 새우볶음밥</div><div class="food-stars">★★★★☆ 4.4 (리뷰 4,763)</div><div class="food-map">📍 한신아레나 (고속철도역)</div></div>
+        <div><div class="food-name">딘타이펑 가오슝점</div><div class="food-menu">샤오롱바오 · 새우볶음밥</div><div class="food-stars">★★★★☆ 4.4 (리뷰 4,763)</div><div class="food-map">📍 한신아레나 B1 (쭤잉구)</div><div class="food-dist">🚇 MRT 가오슝아레나역 5번출구 도보 4분 (총 약 18분)</div></div>
         <div class="food-price-tag">NT$400~700</div>
       </a>
       <a href="https://maps.google.com/?q=北平楊寶寶蒸餃+高雄" target="_blank" class="food-item">
-        <div><div class="food-name">양바오바오 쩡자오 <span class="michelin">빕 구르망</span></div><div class="food-menu">찐만두 · 청돈 우육탕 (17:00~)</div><div class="food-stars">★★★★☆ 4.4 (리뷰 12,000+)</div><div class="food-map">📍 난쯔구</div></div>
+        <div><div class="food-name">양바오바오 쩡자오 <span class="michelin">빕 구르망</span></div><div class="food-menu">찐만두 · 청돈 우육탕 (17:00~)</div><div class="food-stars">★★★★☆ 4.4 (리뷰 12,000+)</div><div class="food-map">📍 난쯔구</div><div class="food-dist">🚇 MRT 가오슝역→버스 또는 택시 약 15분 (총 약 35분)</div></div>
         <div class="food-price-tag">NT$30~100</div>
       </a>
       <a href="https://maps.google.com/?q=樺達奶茶+高雄鹽埕區" target="_blank" class="food-item">
-        <div><div class="food-name">화다 밀크티 본점</div><div class="food-menu">원조 밀크티 60년 전통</div><div class="food-stars">★★★★☆ 4.1 (리뷰 600+)</div><div class="food-map">📍 옌청구 신러제</div></div>
+        <div><div class="food-name">화다 밀크티 본점</div><div class="food-menu">원조 밀크티 60년 전통</div><div class="food-stars">★★★★☆ 4.1 (리뷰 600+)</div><div class="food-map">📍 옌청구 신러제</div><div class="food-dist">🚇 MRT 옌청푸역 도보 약 5분 (총 약 12분)</div></div>
         <div class="food-price-tag">NT$60</div>
       </a>
       <a href="https://maps.google.com/?q=春水堂+高雄" target="_blank" class="food-item">
-        <div><div class="food-name">춘수이탕 <span class="michelin">버블티 발상지</span></div><div class="food-menu">타피오카 밀크티 원조</div><div class="food-stars">★★★★☆ 4.3 (리뷰 2,100+)</div><div class="food-map">📍 한신백화점 내</div></div>
+        <div><div class="food-name">춘수이탕 <span class="michelin">버블티 발상지</span></div><div class="food-menu">타피오카 밀크티 원조</div><div class="food-stars">★★★★☆ 4.3 (리뷰 2,100+)</div><div class="food-map">📍 한신백화점 내 (쭤잉구)</div><div class="food-dist">🚇 MRT 가오슝아레나역 도보 약 5분 (총 약 18분)</div></div>
         <div class="food-price-tag">NT$150~200</div>
       </a>
       <a href="https://maps.google.com/?q=爌肉飯+高雄" target="_blank" class="food-item">
-        <div><div class="food-name">콰이러우판 (루러우판)</div><div class="food-menu">간장 삼겹살 덮밥 · 대만 소울푸드</div><div class="food-stars">★★★★☆ 4.2</div><div class="food-map">📍 시내 전역</div></div>
+        <div><div class="food-name">콰이러우판 (루러우판)</div><div class="food-menu">간장 삼겹살 덮밥 · 대만 소울푸드</div><div class="food-stars">★★★★☆ 4.2</div><div class="food-map">📍 시내 전역</div><div class="food-dist">🚶 도보 5~10분 (미려도역 인근)</div></div>
         <div class="food-price-tag">NT$50~80</div>
       </a>
     </div>
     <div class="food-category">
       <div class="food-cat-title">🍡 가오슝 특산 음식</div>
       <a href="https://maps.google.com/?q=六合夜市+高雄" target="_blank" class="food-item">
-        <div><div class="food-name">파파야 우유 (정라오파이)</div><div class="food-menu">가오슝 기원 원조</div><div class="food-stars">★★★★☆ 4.2 (리뷰 800+)</div><div class="food-map">📍 류허 야시장</div></div>
+        <div><div class="food-name">파파야 우유 (정라오파이)</div><div class="food-menu">가오슝 기원 원조</div><div class="food-stars">★★★★☆ 4.2 (리뷰 800+)</div><div class="food-map">📍 류허 야시장</div><div class="food-dist">🚶 도보 약 5분</div></div>
         <div class="food-price-tag">NT$60~80</div>
       </a>
       <a href="https://maps.google.com/?q=瑞豐夜市+高雄" target="_blank" class="food-item">
-        <div><div class="food-name">천사 지파이 (대왕 닭튀김)</div><div class="food-menu">손바닥 2배 크기</div><div class="food-stars">★★★★☆ 4.0 (리뷰 6,900+)</div><div class="food-map">📍 루이펑 야시장</div></div>
+        <div><div class="food-name">천사 지파이 (대왕 닭튀김)</div><div class="food-menu">손바닥 2배 크기</div><div class="food-stars">★★★★☆ 4.0 (리뷰 6,900+)</div><div class="food-map">📍 루이펑 야시장</div><div class="food-dist">🚇 MRT 가오슝아레나역 도보 3분 (총 약 18분)</div></div>
         <div class="food-price-tag">NT$100~110</div>
       </a>
       <a href="https://maps.google.com/?q=蚵仔煎+高雄" target="_blank" class="food-item">
-        <div><div class="food-name">굴전 (오아젠)</div><div class="food-menu">굴·계란·전분 지진 것</div><div class="food-stars">★★★★☆ 4.3</div><div class="food-map">📍 야시장 전역</div></div>
+        <div><div class="food-name">굴전 (오아젠)</div><div class="food-menu">굴·계란·전분 지진 것</div><div class="food-stars">★★★★☆ 4.3</div><div class="food-map">📍 야시장 전역</div><div class="food-dist">🚶 류허: 도보 5분 / 루이펑: MRT 18분</div></div>
         <div class="food-price-tag">NT$60~80</div>
       </a>
       <a href="https://maps.google.com/?q=老牌白糖粿+高雄" target="_blank" class="food-item">
-        <div><div class="food-name">바이탕구어</div><div class="food-menu">쌀떡 튀김, 가오슝 전통 간식</div><div class="food-stars">★★★★☆ 4.4</div><div class="food-map">📍 링야구</div></div>
+        <div><div class="food-name">바이탕구어</div><div class="food-menu">쌀떡 튀김, 가오슝 전통 간식</div><div class="food-stars">★★★★☆ 4.4</div><div class="food-map">📍 링야구</div><div class="food-dist">🚇 MRT 산두쇼핑역 도보 약 10분 (총 약 20분)</div></div>
         <div class="food-price-tag">NT$20</div>
       </a>
       <a href="https://maps.google.com/?q=黃家粉圓冰+高雄" target="_blank" class="food-item">
-        <div><div class="food-name">흑설탕 분위안 빙수</div><div class="food-menu">타피오카 펄+빙수, 초저가</div><div class="food-stars">★★★★☆ 4.3</div><div class="food-map">📍 첸진구</div></div>
+        <div><div class="food-name">흑설탕 분위안 빙수</div><div class="food-menu">타피오카 펄+빙수, 초저가</div><div class="food-stars">★★★★☆ 4.3</div><div class="food-map">📍 첸진구</div><div class="food-dist">🚇 MRT 첸진역 도보 약 10분 (총 약 20분)</div></div>
         <div class="food-price-tag">NT$10~30</div>
       </a>
       <a href="https://maps.google.com/?q=豪華冰果室+高雄" target="_blank" class="food-item">
-        <div><div class="food-name">호화 빙수 (豪華冰果室)</div><div class="food-menu">계절 과일 토핑 프리미엄 빙수</div><div class="food-stars">★★★★★ 4.5 (리뷰 4,000+)</div><div class="food-map">📍 링야구</div></div>
+        <div><div class="food-name">호화 빙수 (豪華冰果室)</div><div class="food-menu">계절 과일 토핑 프리미엄 빙수</div><div class="food-stars">★★★★★ 4.5 (리뷰 4,000+)</div><div class="food-map">📍 링야구</div><div class="food-dist">🚇 MRT 산두쇼핑역 도보 약 10분 (총 약 20분)</div></div>
         <div class="food-price-tag">NT$80~150</div>
       </a>
       <a href="https://maps.google.com/?q=雞蛋糕+高雄夜市" target="_blank" class="food-item">
-        <div><div class="food-name">계란빵 (雞蛋糕)</div><div class="food-menu">계란 모양 미니 와플, 즉석 간식</div><div class="food-stars">★★★★☆ 4.2</div><div class="food-map">📍 야시장 전역</div></div>
+        <div><div class="food-name">계란빵 (雞蛋糕)</div><div class="food-menu">계란 모양 미니 와플, 즉석 간식</div><div class="food-stars">★★★★☆ 4.2</div><div class="food-map">📍 야시장 전역</div><div class="food-dist">🚶 류허: 도보 5분 / 루이펑: MRT 18분</div></div>
         <div class="food-price-tag">NT$20~35</div>
       </a>
     </div>
@@ -427,5 +464,142 @@
 
 </div>
 <div class="footer">가오슝 여행 가이드 · June 2026 · 즐거운 여행 되세요! 🌴</div>
+
+
+<script>
+// ── 각 장소 좌표 (위도, 경도) ──────────────────────────
+const SPOT_COORDS = [
+  [22.6328, 120.3022], // 1 미려도역 빛의 돔
+  [22.6228, 120.2906], // 2 보얼 예술특구
+  [22.6108, 120.2797], // 3 치진섬
+  [22.6178, 120.2744], // 4 다거우 영국 영사관
+  [22.6892, 120.2983], // 5 연지담·용호탑
+  [22.6362, 120.3069], // 6 아이허 유람선
+  [22.6367, 120.3033], // 7 류허 야시장
+  [22.6614, 120.3097], // 8 루이펑 야시장
+  [22.6383, 120.2817], // 9 웨이우잉 문화센터
+  [22.7456, 120.4583], // 10 불광산 불타기념관
+  [22.6103, 120.3008], // 11 85 스카이타워
+  [22.6028, 120.2697], // 12 치진 해수욕장
+  [22.6567, 120.2981], // 13 가오슝 시립미술관
+  [22.6458, 120.3089], // 14 삼봉궁
+  [22.6972, 120.2978], // 15 쭤잉 고성
+  [22.6267, 120.2644], // 16 국립 중산대학교 & 시즈완
+];
+
+const FOOD_COORDS = [
+  // 🏆 현지인 단골
+  [22.6267, 120.2889], // 강위엔 우육면
+  [22.6261, 120.2894], // 야러우전
+  [22.6278, 120.2906], // 북강채삼대
+  [22.6289, 120.2894], // 大溝頂 시무위
+  [22.6256, 120.2894], // 廣東汕頭 소고기
+  [22.6339, 120.3233], // 완리샹 훈툰
+  [22.6272, 120.3586], // 봉산 바완
+  // 🇰🇷 한국인 필수
+  [22.6378, 120.3028], // 흥륭거
+  [22.6383, 120.3056], // 라오지앙 밀크티
+  [22.6894, 120.3022], // 딘타이펑
+  [22.7039, 120.3406], // 양바오바오
+  [22.6267, 120.2889], // 화다 밀크티
+  [22.6894, 120.3022], // 춘수이탕
+  [22.6367, 120.3033], // 콰이러우판
+  // 🍡 가오슝 특산
+  [22.6367, 120.3033], // 파파야 우유
+  [22.6614, 120.3097], // 천사 지파이
+  [22.6367, 120.3033], // 굴전
+  [22.6222, 120.3067], // 바이탕구어
+  [22.6339, 120.3233], // 흑설탕 분위안
+  [22.6222, 120.3067], // 호화 빙수
+  [22.6367, 120.3033], // 계란빵
+];
+
+// 쿵샹 디자인 호텔 좌표 (신싱구 린썬이루 237, 미려도역 인근)
+const HOTEL = [22.6375, 120.3045];
+
+// 하버사인 공식 (직선 거리 km)
+function haversine(lat1, lng1, lat2, lng2) {
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLng = (lng2 - lng1) * Math.PI / 180;
+  const a = Math.sin(dLat/2)**2 +
+            Math.cos(lat1*Math.PI/180) * Math.cos(lat2*Math.PI/180) * Math.sin(dLng/2)**2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
+// 거리 → 도보/대중교통 예상 시간 텍스트
+function distText(km) {
+  if (km < 0.4)  return `🚶 도보 약 ${Math.round(km*1000/70)}분 (${km.toFixed(1)}km)`;
+  if (km < 1.5)  return `🚶 도보 약 ${Math.round(km/0.08)}분 (${km.toFixed(1)}km)`;
+  if (km < 5)    return `🚇 약 ${Math.round(km/0.35 + 5)}분 (${km.toFixed(1)}km)`;
+  return `🚇 약 ${Math.round(km/0.45 + 8)}분 (${km.toFixed(1)}km)`;
+}
+
+function updateDists(myLat, myLng) {
+  const spotDists = document.querySelectorAll('.spot-dist');
+  spotDists.forEach((el, i) => {
+    if (!SPOT_COORDS[i]) return;
+    const [lat, lng] = SPOT_COORDS[i];
+    const km = haversine(myLat, myLng, lat, lng);
+    const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${myLat},${myLng}&destination=${lat},${lng}&travelmode=transit`;
+    el.innerHTML = `<span>${distText(km)}</span><a href="${mapsUrl}" target="_blank" class="dist-nav" onclick="event.stopPropagation()">길찾기 ↗</a>`;
+  });
+  const foodDists = document.querySelectorAll('.food-dist');
+  foodDists.forEach((el, i) => {
+    if (!FOOD_COORDS[i]) return;
+    const [lat, lng] = FOOD_COORDS[i];
+    const km = haversine(myLat, myLng, lat, lng);
+    const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${myLat},${myLng}&destination=${lat},${lng}&travelmode=transit`;
+    el.innerHTML = `<span>${distText(km)}</span><a href="${mapsUrl}" target="_blank" class="dist-nav">길찾기 ↗</a>`;
+  });
+}
+
+let currentMode = 'hotel';
+
+function setTabStyle(mode) {
+  document.querySelectorAll('.btn-hotel').forEach(btn => {
+    btn.classList.toggle('active-tab', mode === 'hotel');
+  });
+  document.querySelectorAll('.btn-me').forEach(btn => {
+    btn.classList.toggle('active-tab', mode === 'me');
+  });
+}
+
+function switchMode(mode) {
+  if (mode === 'hotel') {
+    currentMode = 'hotel';
+    setTabStyle('hotel');
+    updateDists(HOTEL[0], HOTEL[1]);
+  } else {
+    if (!navigator.geolocation) {
+      alert('이 브라우저는 위치 기능을 지원하지 않습니다.');
+      return;
+    }
+    document.querySelectorAll('.btn-me').forEach(btn => {
+      btn.textContent = '⏳ 확인 중...';
+      btn.disabled = true;
+    });
+    navigator.geolocation.getCurrentPosition(pos => {
+      currentMode = 'me';
+      setTabStyle('me');
+      updateDists(pos.coords.latitude, pos.coords.longitude);
+      document.querySelectorAll('.btn-me').forEach(btn => {
+        btn.textContent = '📍 내 위치';
+        btn.disabled = false;
+      });
+    }, () => {
+      alert('위치를 가져올 수 없습니다.\n위치 권한을 허용해 주세요.');
+      document.querySelectorAll('.btn-me').forEach(btn => {
+        btn.textContent = '📍 내 위치';
+        btn.disabled = false;
+      });
+    }, { timeout: 10000 });
+  }
+}
+
+// 페이지 로드 시 숙소 기준으로 초기화
+window.addEventListener('load', () => updateDists(HOTEL[0], HOTEL[1]));
+</script>
+
 </body>
 </html>
