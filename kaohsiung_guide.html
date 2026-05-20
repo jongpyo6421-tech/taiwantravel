@@ -135,6 +135,83 @@
   .hotel-bar .hotel-sep { opacity: 0.4; }
   .hotel-bar .hotel-info { opacity: 0.92; }
 
+  /* ===== 환율 계산기 ===== */
+  .currency-bar { background: linear-gradient(90deg, #4a5e8a, #3a4e7a); padding: 12px 40px; display: flex; align-items: center; gap: 16px; font-size: 13px; font-weight: 500; flex-wrap: wrap; color: #fff; }
+  .currency-label { font-weight: 800; font-size: 14px; color: #ffe0a0; white-space: nowrap; }
+  .currency-inputs { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .currency-prefix { font-size: 15px; font-weight: 700; opacity: 0.85; }
+  .currency-input { border: 1.5px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.12); color: #fff; font-size: 16px; font-weight: 700; padding: 5px 12px; border-radius: 8px; width: 120px; outline: none; font-family: inherit; }
+  .currency-input::placeholder { color: rgba(255,255,255,0.45); font-size: 13px; font-weight: 400; }
+  .currency-eq { font-size: 18px; opacity: 0.6; }
+  .currency-result { font-size: 18px; font-weight: 800; color: #ffe0a0; min-width: 160px; }
+  .currency-note { font-size: 11px; opacity: 0.55; margin-left: auto; }
+
+  /* ===== 지역 필터 ===== */
+  .area-filter { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .area-btn { border: 1.5px solid rgba(180,130,80,0.3); background: transparent; color: rgba(58,42,26,0.55); font-size: 12px; font-weight: 700; padding: 5px 14px; border-radius: 20px; cursor: pointer; transition: all 0.18s; font-family: inherit; }
+  .area-btn.active { background: #c47055; border-color: #c47055; color: #fff; }
+  .spots-grid > a.area-hidden { display: none !important; }
+  .food-item.area-hidden { display: none !important; }
+
+  /* ===== 방문 체크 ===== */
+  .spot-card.visited { border-color: rgba(42,120,88,0.55) !important; background: linear-gradient(145deg, #f0faf5, #e8f5ef) !important; }
+  .visit-badge { position: absolute; top: 8px; left: 10px; background: #2a7858; color: #fff; font-size: 9px; font-weight: 800; padding: 2px 7px; border-radius: 10px; display: none; letter-spacing: 0.5px; }
+  .spot-card.visited .visit-badge { display: block; }
+  .food-item.visited { background: rgba(42,120,88,0.07) !important; }
+  .food-visited-mark { display: none; color: #2a7858; font-weight: 800; margin-left: 5px; font-size: 11px; }
+  .food-item.visited .food-visited-mark { display: inline; }
+  .visit-hint { font-size: 10px; color: rgba(58,42,26,0.3); margin-bottom: 8px; text-align: right; }
+
+  /* ===== 필수 앱 ===== */
+  .app-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 50px; }
+  .app-card { background: #fffaf3; border: 1px solid rgba(180,130,80,0.2); border-radius: 14px; padding: 16px; display: flex; gap: 12px; align-items: flex-start; }
+  .app-icon { font-size: 26px; flex-shrink: 0; }
+  .app-name { font-size: 13px; font-weight: 800; color: #3a2a1a; margin-bottom: 3px; }
+  .app-desc { font-size: 11px; color: rgba(58,42,26,0.55); line-height: 1.5; }
+  .app-dl { display: inline-block; margin-top: 5px; font-size: 10px; font-weight: 700; color: #4a7fa8; text-decoration: none; background: rgba(74,127,168,0.1); padding: 2px 8px; border-radius: 6px; }
+
+  /* ===== 긴급 연락처 ===== */
+  .emergency-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 50px; }
+  .emergency-card { background: #fffaf3; border: 1px solid rgba(180,130,80,0.2); border-radius: 16px; padding: 20px; }
+  .emergency-title { font-size: 14px; font-weight: 800; color: #c04838; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid rgba(192,72,56,0.15); display: flex; align-items: center; gap: 6px; }
+  .emergency-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid rgba(180,130,80,0.12); font-size: 12px; gap: 8px; }
+  .emergency-row:last-child { border-bottom: none; }
+  .e-label { color: rgba(58,42,26,0.55); flex-shrink: 0; }
+  .e-value { font-weight: 700; color: #3a2a1a; text-align: right; }
+  .e-value a { color: #4a7fa8; text-decoration: none; font-weight: 700; }
+
+  /* ===== MRT 노선도 ===== */
+  .mrt-wrap { background: #fffaf3; border: 1px solid rgba(180,130,80,0.2); border-radius: 16px; padding: 22px; margin-bottom: 50px; }
+  .mrt-legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+  .mrt-legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: rgba(58,42,26,0.65); }
+  .mrt-dot-r,.mrt-dot-o,.mrt-dot-g,.mrt-dot-x { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .mrt-dot-r { background: #e83535; }
+  .mrt-dot-o { background: #f07d00; }
+  .mrt-dot-g { background: #00a860; }
+  .mrt-dot-x { background: #fff; border: 2px solid #888; box-shadow: 0 0 0 1.5px #888; }
+  .mrt-scroll { overflow-x: auto; padding-bottom: 8px; }
+  .mrt-line-block { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 24px; min-width: 600px; }
+  .mrt-line-block:last-child { margin-bottom: 0; }
+  .mrt-line-tag { font-size: 11px; font-weight: 800; color: #fff; padding: 4px 10px; border-radius: 6px; white-space: nowrap; flex-shrink: 0; margin-top: 8px; }
+  .mrt-stations { display: flex; align-items: flex-start; }
+  .mrt-st { display: flex; flex-direction: column; align-items: center; }
+  .mrt-st > div:first-child { display: flex; align-items: center; height: 20px; }
+  .mrt-node-r,.mrt-node-o,.mrt-node-g,.mrt-node-x { width: 12px; height: 12px; border-radius: 50%; border: 2px solid #fff; flex-shrink: 0; }
+  .mrt-node-r { background: #e83535; }
+  .mrt-node-o { background: #f07d00; }
+  .mrt-node-g { background: #00a860; }
+  .mrt-node-x { background: #fff; border: 2px solid #888; box-shadow: 0 0 0 1.5px #888; width: 14px; height: 14px; }
+  .mrt-rail-r,.mrt-rail-o,.mrt-rail-g { height: 3px; width: 52px; flex-shrink: 0; }
+  .mrt-rail-r { background: #e83535; }
+  .mrt-rail-o { background: #f07d00; }
+  .mrt-rail-g { background: #00a860; }
+  .mrt-sname { font-size: 9.5px; color: rgba(58,42,26,0.6); font-weight: 500; text-align: center; margin-top: 5px; max-width: 58px; line-height: 1.3; }
+  .mrt-sname small { font-size: 8.5px; color: rgba(58,42,26,0.45); }
+  .mrt-sname.key { color: #3a2a1a; font-weight: 800; }
+  .mrt-sname.key small { color: #c06820; font-weight: 700; }
+  .mrt-sname.transfer { color: #c04838; font-weight: 800; }
+  .mrt-sname.transfer small { color: #c04838; font-weight: 700; }
+
   /* ===== 반응형 ===== */
 
   /* 태블릿 가로 / 큰 화면 */
@@ -154,6 +231,8 @@
     .tips-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
     .hero h1 { font-size: 38px; }
     .container { padding: 28px 16px; }
+    .app-grid { grid-template-columns: 1fr 1fr; }
+    .emergency-grid { grid-template-columns: 1fr 1fr; }
   }
 
   /* 일반 스마트폰 */
@@ -189,6 +268,10 @@
     .info-row { flex-wrap: wrap; gap: 2px; padding: 10px 0; }
     .info-label { width: 100%; font-size: 11px; }
     .info-value { width: 100%; text-align: left; font-size: 13px; font-weight: 700; }
+    .currency-bar { padding: 12px 16px; gap: 10px; }
+    .currency-result { font-size: 16px; }
+    .app-grid { grid-template-columns: 1fr; }
+    .emergency-grid { grid-template-columns: 1fr; }
   }
 
   /* 일반 스마트폰 — 토글 소형화 */
@@ -236,6 +319,7 @@
     .day-date { font-size: 18px; }
     .slot-content { font-size: 13px; }
     .slot-map-link { font-size: 11px; }
+    .currency-input { width: 100px; font-size: 15px; }
   }
 </style>
 </head>
@@ -266,10 +350,21 @@
   <span class="hotel-info">📍 신싱구 린썬이루 237 · 미려도역 도보 7~10분 · 류허야시장 도보 5분</span>
 </div>
 
+<div class="currency-bar">
+  <span class="currency-label">💱 환율 계산기</span>
+  <div class="currency-inputs">
+    <span class="currency-prefix">NT$</span>
+    <input class="currency-input" id="currencyInput" type="number" placeholder="금액 입력" oninput="updateCurrency()" inputmode="numeric">
+    <span class="currency-eq">=</span>
+    <span class="currency-result" id="currencyResult">—</span>
+  </div>
+  <span class="currency-note" id="currencyNote">※ 환율 불러오는 중…</span>
+</div>
+
 <div class="container">
 
 
-  <div class="section-title has-toggle"><span class="emoji">🏛</span> 추천 명소 TOP 16 <span style="font-size:13px;font-weight:400;color:rgba(58,42,26,0.4);margin-left:4px;">클릭→구글맵</span><span class="title-line"></span><div class="dist-toggle-pill"><button class="btn-hotel active-tab" onclick="switchMode('hotel')">🏨 숙소</button><button class="btn-me" onclick="switchMode('me')">📍 내 위치</button></div></div>
+  <div class="section-title has-toggle"><span class="emoji">🏛</span> 추천 명소 TOP 21 <span style="font-size:13px;font-weight:400;color:rgba(58,42,26,0.4);margin-left:4px;">클릭→구글맵</span><span class="title-line"></span><div class="dist-toggle-pill"><button class="btn-hotel active-tab" onclick="switchMode('hotel')">🏨 숙소</button><button class="btn-me" onclick="switchMode('me')">📍 내 위치</button></div></div>
   <div class="spots-grid">
     <a href="https://maps.google.com/?q=美麗島捷運站+高雄" target="_blank" style="text-decoration:none;color:inherit;">
     <div class="spot-card"><div class="spot-rank">1</div><div class="spot-emoji">🌟</div><div class="spot-name">미려도역 빛의 돔</div><div class="spot-stars">★★★★★ 4.8</div><div class="spot-info">세계 최대 스테인드글라스<br>CNN 선정 가장 아름다운 역</div><div class="spot-price">무료</div><div class="spot-dist">🚶 도보 7~10분</div><div class="map-hint">구글맵으로 보기</div><div class="must-go">MUST</div></div></a>
@@ -303,6 +398,16 @@
     <div class="spot-card"><div class="spot-rank">15</div><div class="spot-emoji">🏯</div><div class="spot-name">쭤잉 고성</div><div class="spot-stars">★★★★☆ 4.3</div><div class="spot-info">청나라 시대 성벽 유적<br>연지담과 도보 10분 거리</div><div class="spot-price">무료</div><div class="spot-dist">🚇 MRT 쭤잉역 도보 15~20분 (약 35분)</div><div class="map-hint">구글맵으로 보기</div></div></a>
     <a href="https://maps.google.com/?q=國立中山大學+西子灣+高雄" target="_blank" style="text-decoration:none;color:inherit;">
     <div class="spot-card"><div class="spot-rank">16</div><div class="spot-emoji">🌊</div><div class="spot-name">국립 중산대학교 & 시즈완</div><div class="spot-stars">★★★★☆ 4.5</div><div class="spot-info">오션뷰 캠퍼스 무료 산책<br>일몰 명당·영사관과 도보 5분</div><div class="spot-price">무료</div><div class="spot-dist">🚇 MRT 하마싱역 도보 15~20분 (약 30분)</div><div class="map-hint">구글맵으로 보기</div></div></a>
+    <a href="https://maps.google.com/?q=高雄忠烈祠" target="_blank" style="text-decoration:none;color:inherit;">
+    <div class="spot-card"><div class="spot-rank">17</div><div class="spot-emoji">🗿</div><div class="spot-name">충렬사 & 러브 전망대</div><div class="spot-stars">★★★★☆ 4.4</div><div class="spot-info">가오슝 시내 파노라마 뷰<br>연인 명소·일몰 포토스팟</div><div class="spot-price">무료</div><div class="spot-dist">🚇 MRT 쭤잉역 도보 10분 (약 35분)</div><div class="map-hint">구글맵으로 보기</div></div></a>
+    <a href="https://maps.google.com/?q=左營啟明堂+高雄" target="_blank" style="text-decoration:none;color:inherit;">
+    <div class="spot-card"><div class="spot-rank">18</div><div class="spot-emoji">🏮</div><div class="spot-name">좌잉 계명사</div><div class="spot-stars">★★★★☆ 4.6</div><div class="spot-info">쭤잉 대표 사원<br>화려한 전통 건축 포토스팟</div><div class="spot-price">무료</div><div class="spot-dist">🚇 MRT 쭤잉역 도보 15분 (약 35분)</div><div class="map-hint">구글맵으로 보기</div></div></a>
+    <a href="https://maps.google.com/?q=法興禪寺+高雄旗津" target="_blank" style="text-decoration:none;color:inherit;">
+    <div class="spot-card"><div class="spot-rank">19</div><div class="spot-emoji">☸️</div><div class="spot-name">법흥선사</div><div class="spot-stars">★★★★★ 4.8</div><div class="spot-info">흰 돔 불교 사찰 이국적 외관<br>치진섬 인근 도보 접근</div><div class="spot-price">무료</div><div class="spot-dist">🚇 MRT 하마싱역 도보 15~20분 (약 30분)</div><div class="map-hint">구글맵으로 보기</div></div></a>
+    <a href="https://maps.google.com/?q=壽山動物園+高雄" target="_blank" style="text-decoration:none;color:inherit;">
+    <div class="spot-card"><div class="spot-rank">20</div><div class="spot-emoji">🐒</div><div class="spot-name">서우산 동물원</div><div class="spot-stars">★★★★☆ 4.2</div><div class="spot-info">원숭이 방목 서식 명물<br>가오슝 유일 동물원</div><div class="spot-price">NT$40</div><div class="spot-dist">🚇 MRT 시의회역→버스 10분 (약 25분)</div><div class="map-hint">구글맵으로 보기</div></div></a>
+    <a href="https://maps.google.com/?q=旗津漁港+高雄" target="_blank" style="text-decoration:none;color:inherit;">
+    <div class="spot-card"><div class="spot-rank">21</div><div class="spot-emoji">🦐</div><div class="spot-name">치진 어항 수산시장</div><div class="spot-stars">★★★★☆ 4.1</div><div class="spot-info">신선 해산물 직거래 시장<br>치진섬 페리 이용</div><div class="spot-price">무료 입장</div><div class="spot-dist">🚇 MRT 하마싱역→페리 (약 35~40분)</div><div class="map-hint">구글맵으로 보기</div></div></a>
   </div>
 
   <div class="section-title has-toggle"><span class="emoji">🍜</span> 맛집 가이드 <span style="font-size:13px;font-weight:400;color:rgba(58,42,26,0.4);margin-left:4px;">클릭→구글맵</span><span class="title-line"></span><div class="dist-toggle-pill"><button class="btn-hotel active-tab" onclick="switchMode('hotel')">🏨 숙소</button><button class="btn-me" onclick="switchMode('me')">📍 내 위치</button></div></div>
@@ -337,6 +442,18 @@
         <div><div class="food-name">봉산 바완</div><div class="food-menu">쌀경단 튀김 (가오슝 스타일)</div><div class="food-stars">★★★★☆ 4.2 (리뷰 1,800+)</div><div class="food-map">📍 펑산구</div><div class="food-dist">🚇 MRT 펑산역 하차 도보 약 10분 (총 약 30분)</div></div>
         <div class="food-price-tag">NT$40~60</div>
       </a>
+      <a href="https://maps.google.com/?q=前金肉燥飯+高雄" target="_blank" class="food-item">
+        <div><div class="food-name">전금육조반</div><div class="food-menu">족발 덮밥 · 로컬 소울푸드</div><div class="food-stars">★★★★☆ 4.1</div><div class="food-map">📍 전금구</div><div class="food-dist">🚇 MRT 미려도역 도보 약 15분 (총 약 20분)</div></div>
+        <div class="food-price-tag">NT$60~80</div>
+      </a>
+      <a href="https://maps.google.com/?q=三牛牛肉麵+高雄" target="_blank" class="food-item">
+        <div><div class="food-name">삼우우육면</div><div class="food-menu">진한 육수 우육면</div><div class="food-stars">★★★★☆ 4.2</div><div class="food-map">📍 옌청구</div><div class="food-dist">🚇 MRT 옌청푸역 도보 약 5분 (총 약 12분)</div></div>
+        <div class="food-price-tag">NT$120~160</div>
+      </a>
+      <a href="https://maps.google.com/?q=厚得福+高雄" target="_blank" class="food-item">
+        <div><div class="food-name">후덕복</div><div class="food-menu">공심채볶음 · 매운 고기만두 · 소롱포</div><div class="food-stars">★★★★☆ 4.3</div><div class="food-map">📍 신싱구</div><div class="food-dist">🚇 MRT 미려도역 도보 약 10분 (총 약 15분)</div></div>
+        <div class="food-price-tag">NT$150~300</div>
+      </a>
     </div>
     <div class="food-category">
       <div class="food-cat-title">🇰🇷 한국인 필수 코스</div>
@@ -368,6 +485,14 @@
         <div><div class="food-name">콰이러우판 (루러우판)</div><div class="food-menu">간장 삼겹살 덮밥 · 대만 소울푸드</div><div class="food-stars">★★★★☆ 4.2</div><div class="food-map">📍 시내 전역</div><div class="food-dist">🚶 도보 5~10분 (미려도역 인근)</div></div>
         <div class="food-price-tag">NT$50~80</div>
       </a>
+      <a href="https://maps.google.com/?q=點點心+高雄" target="_blank" class="food-item">
+        <div><div class="food-name">Dimdimsum 딤딤섬</div><div class="food-menu">새우 하가우 · 소롱포 · 차슈바오</div><div class="food-stars">★★★★☆ 4.5 (리뷰 2,989)</div><div class="food-map">📍 가오슝 시내</div><div class="food-dist">🚇 MRT 산두쇼핑역 도보 약 5분 (총 약 15분)</div></div>
+        <div class="food-price-tag">NT$200~400</div>
+      </a>
+      <a href="https://maps.google.com/?q=香遇小火鍋+高雄" target="_blank" class="food-item">
+        <div><div class="food-name">香遇小火鍋</div><div class="food-menu">우유 베이스 훠궈 · 1인 전골</div><div class="food-stars">★★★★☆ 4.0</div><div class="food-map">📍 신싱구</div><div class="food-dist">🚇 MRT 미려도역 도보 약 12분 (총 약 18분)</div></div>
+        <div class="food-price-tag">NT$250~400</div>
+      </a>
     </div>
     <div class="food-category">
       <div class="food-cat-title">🍡 가오슝 특산 음식</div>
@@ -398,6 +523,22 @@
       <a href="https://maps.google.com/?q=雞蛋糕+高雄夜市" target="_blank" class="food-item">
         <div><div class="food-name">계란빵 (雞蛋糕)</div><div class="food-menu">계란 모양 미니 와플, 즉석 간식</div><div class="food-stars">★★★★☆ 4.2</div><div class="food-map">📍 야시장 전역</div><div class="food-dist">🚶 류허: 도보 5분 / 루이펑: MRT 18분</div></div>
         <div class="food-price-tag">NT$20~35</div>
+      </a>
+      <a href="https://maps.google.com/?q=海之冰+高雄" target="_blank" class="food-item">
+        <div><div class="food-name">하이즈빙 (海之冰)</div><div class="food-menu">대형 빙수 원조 · 계절 과일 토핑</div><div class="food-stars">★★★★☆ 4.4</div><div class="food-map">📍 시내 전역</div><div class="food-dist">🚇 MRT 미려도역 도보 약 10분 (총 약 15분)</div></div>
+        <div class="food-price-tag">NT$80~150</div>
+      </a>
+      <a href="https://maps.google.com/?q=旗津沙灘吧+高雄" target="_blank" class="food-item">
+        <div><div class="food-name">Cijin Sunset Bar</div><div class="food-menu">치진 해변 선셋 칵테일·맥주</div><div class="food-stars">★★★★☆ 4.4 (리뷰 1,734)</div><div class="food-map">📍 치진섬 해변</div><div class="food-dist">🚇 MRT 하마싱역→페리 (총 약 35분)</div></div>
+        <div class="food-price-tag">NT$150~300</div>
+      </a>
+      <a href="https://maps.google.com/?q=正家興波士頓手工蛋糕+高雄" target="_blank" class="food-item">
+        <div><div class="food-name">正家興 카스테라 케이크</div><div class="food-menu">수제 보스턴 케이크 · 선물용 포장</div><div class="food-stars">★★★★☆ 4.3</div><div class="food-map">📍 치진 풍차 근처</div><div class="food-dist">🚇 MRT 하마싱역→페리→도보 (약 40분)</div></div>
+        <div class="food-price-tag">NT$200~500</div>
+      </a>
+      <a href="https://maps.google.com/?q=萬二小吃店+高雄旗津" target="_blank" class="food-item">
+        <div><div class="food-name">萬二小吃店</div><div class="food-menu">치진 어항 해산물 티켓→요리 교환</div><div class="food-stars">★★★★☆ 4.2</div><div class="food-map">📍 치진 어항</div><div class="food-dist">🚇 MRT 하마싱역→페리 (총 약 35분)</div></div>
+        <div class="food-price-tag">NT$200~500</div>
       </a>
     </div>
   </div>
@@ -462,6 +603,85 @@
     <div class="tip-card"><span class="tip-icon">🔥</span><div class="tip-text"><strong>한낮 12~15시 실내</strong>직사광선+습도 최강. 실내 냉방 명소 배치 필수</div></div>
   </div>
 
+  <div class="section-title"><span class="emoji">📱</span> 여행 필수 앱</div>
+  <div class="app-grid">
+    <div class="app-card"><span class="app-icon">💳</span><div><div class="app-name">아이패스 (一卡通)</div><div class="app-desc">MRT·버스·페리 15~50% 할인. 공항·역 구매 가능</div><a href="https://www.i-pass.com.tw" target="_blank" class="app-dl">공식 사이트 →</a></div></div>
+    <div class="app-card"><span class="app-icon">🗺️</span><div><div class="app-name">Google Maps</div><div class="app-desc">오프라인 지도 미리 다운로드. 가오슝 지역 저장 필수</div><a href="https://maps.google.com" target="_blank" class="app-dl">다운로드 →</a></div></div>
+    <div class="app-card"><span class="app-icon">🎟️</span><div><div class="app-name">Klook</div><div class="app-desc">현지 투어·입장권 예약. 불광산 셔틀 버스 예약 가능</div><a href="https://www.klook.com" target="_blank" class="app-dl">다운로드 →</a></div></div>
+    <div class="app-card"><span class="app-icon">🚌</span><div><div class="app-name">Bus+ 대만 버스</div><div class="app-desc">실시간 버스 도착 시간. 치진·불광산 이동 필수</div><a href="https://www.taiwanbus.tw" target="_blank" class="app-dl">다운로드 →</a></div></div>
+    <div class="app-card"><span class="app-icon">📸</span><div><div class="app-name">Papago 번역</div><div class="app-desc">카메라 번역. 메뉴판·간판 즉시 번역</div><a href="https://papago.naver.com" target="_blank" class="app-dl">다운로드 →</a></div></div>
+    <div class="app-card"><span class="app-icon">🌦️</span><div><div class="app-name">대만 기상청 날씨</div><div class="app-desc">시간별 스콜 예보. 우산 챙기기 전 필수 체크</div><a href="https://www.cwa.gov.tw" target="_blank" class="app-dl">공식 사이트 →</a></div></div>
+  </div>
+
+  <div class="section-title"><span class="emoji">🆘</span> 긴급 연락처</div>
+  <div class="emergency-grid">
+    <div class="emergency-card">
+      <div class="emergency-title">🚨 긴급 신고</div>
+      <div class="emergency-row"><span class="e-label">경찰</span><span class="e-value"><a href="tel:110">110</a></span></div>
+      <div class="emergency-row"><span class="e-label">소방·구급</span><span class="e-value"><a href="tel:119">119</a></span></div>
+      <div class="emergency-row"><span class="e-label">관광 경찰</span><span class="e-value"><a href="tel:0800024111">0800-024-111</a></span></div>
+      <div class="emergency-row"><span class="e-label">한국어 관광안내</span><span class="e-value"><a href="tel:0800011765">0800-011-765</a></span></div>
+    </div>
+    <div class="emergency-card">
+      <div class="emergency-title">🇰🇷 한국 공관</div>
+      <div class="emergency-row"><span class="e-label">주대만 한국 대표부</span><span class="e-value"><a href="tel:+886227588320">02-2758-8320</a></span></div>
+      <div class="emergency-row"><span class="e-label">영사콜센터(한국)</span><span class="e-value"><a href="tel:+82232100404">+82-2-3210-0404</a></span></div>
+      <div class="emergency-row"><span class="e-label">가오슝 관광안내</span><span class="e-value"><a href="tel:078009011">07-800-9011</a></span></div>
+      <div class="emergency-row"><span class="e-label">긴급의료통역</span><span class="e-value"><a href="tel:0800030045">0800-030-045</a></span></div>
+    </div>
+  </div>
+
+  <div class="section-title"><span class="emoji">🚇</span> 가오슝 MRT 주요 노선</div>
+  <div class="mrt-wrap">
+    <div class="mrt-legend">
+      <span class="mrt-legend-item"><span class="mrt-dot-r"></span> 레드선</span>
+      <span class="mrt-legend-item"><span class="mrt-dot-o"></span> 오렌지선</span>
+      <span class="mrt-legend-item"><span class="mrt-dot-g"></span> 경전철(LRT)</span>
+      <span class="mrt-legend-item"><span class="mrt-dot-x"></span> 환승역</span>
+    </div>
+    <div class="mrt-scroll">
+      <!-- Red Line -->
+      <div class="mrt-line-block">
+        <div class="mrt-line-tag" style="background:#e83535;">레드선</div>
+        <div class="mrt-stations">
+          <div class="mrt-st"><div class="mrt-node-r"></div><div class="mrt-rail-r"></div><div class="mrt-sname">左營<br><small>쭤잉(고속철)</small></div></div>
+          <div class="mrt-st"><div class="mrt-node-r"></div><div class="mrt-rail-r"></div><div class="mrt-sname key">巨蛋<br><small>★루이펑야시장</small></div></div>
+          <div class="mrt-st"><div class="mrt-node-r"></div><div class="mrt-rail-r"></div><div class="mrt-sname">後驛<br><small>후이역</small></div></div>
+          <div class="mrt-st"><div class="mrt-node-r"></div><div class="mrt-rail-r"></div><div class="mrt-sname">高雄車站<br><small>가오슝역</small></div></div>
+          <div class="mrt-st"><div class="mrt-node-r"></div><div class="mrt-rail-r"></div><div class="mrt-sname">中央公園<br><small>중앙공원</small></div></div>
+          <div class="mrt-st"><div class="mrt-node-x"></div><div class="mrt-rail-r"></div><div class="mrt-sname transfer">美麗島<br><small>★미려도 환승</small></div></div>
+          <div class="mrt-st"><div class="mrt-node-r"></div><div class="mrt-rail-r"></div><div class="mrt-sname key">鹽埕埔<br><small>★맛집 밀집</small></div></div>
+          <div class="mrt-st"><div class="mrt-node-x"></div><div class="mrt-rail-r"></div><div class="mrt-sname transfer">西子灣<br><small>★치진 페리</small></div></div>
+          <div class="mrt-st last"><div class="mrt-node-r"></div><div class="mrt-sname">小港<br><small>공항</small></div></div>
+        </div>
+      </div>
+      <!-- Orange Line -->
+      <div class="mrt-line-block">
+        <div class="mrt-line-tag" style="background:#f07d00;">오렌지선</div>
+        <div class="mrt-stations">
+          <div class="mrt-st"><div class="mrt-node-x"></div><div class="mrt-rail-o"></div><div class="mrt-sname transfer">西子灣<br><small>★치진 페리</small></div></div>
+          <div class="mrt-st"><div class="mrt-node-o"></div><div class="mrt-rail-o"></div><div class="mrt-sname key">鹽埕埔<br><small>★맛집</small></div></div>
+          <div class="mrt-st"><div class="mrt-node-x"></div><div class="mrt-rail-o"></div><div class="mrt-sname transfer">美麗島<br><small>★환승</small></div></div>
+          <div class="mrt-st"><div class="mrt-node-o"></div><div class="mrt-rail-o"></div><div class="mrt-sname key">市議會<br><small>★아이허</small></div></div>
+          <div class="mrt-st"><div class="mrt-node-o"></div><div class="mrt-rail-o"></div><div class="mrt-sname">文化中心<br><small>문화중심</small></div></div>
+          <div class="mrt-st"><div class="mrt-node-o"></div><div class="mrt-rail-o"></div><div class="mrt-sname key">衛武營<br><small>★문화센터</small></div></div>
+          <div class="mrt-st last"><div class="mrt-node-o"></div><div class="mrt-sname">鳳山<br><small>펑산</small></div></div>
+        </div>
+      </div>
+      <!-- LRT -->
+      <div class="mrt-line-block">
+        <div class="mrt-line-tag" style="background:#00a860;">경전철</div>
+        <div class="mrt-stations">
+          <div class="mrt-st"><div class="mrt-node-g"></div><div class="mrt-rail-g"></div><div class="mrt-sname key">哈瑪星<br><small>★치진 페리</small></div></div>
+          <div class="mrt-st"><div class="mrt-node-g"></div><div class="mrt-rail-g"></div><div class="mrt-sname key">駁二蓬萊<br><small>★보얼예술</small></div></div>
+          <div class="mrt-st"><div class="mrt-node-g"></div><div class="mrt-rail-g"></div><div class="mrt-sname">駁二大義<br><small>보얼대의</small></div></div>
+          <div class="mrt-st"><div class="mrt-node-g"></div><div class="mrt-rail-g"></div><div class="mrt-sname">凱旋中華<br><small>카이쉔</small></div></div>
+          <div class="mrt-st last"><div class="mrt-node-g"></div><div class="mrt-sname">夢時代<br><small>드림몰</small></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 <div class="footer">가오슝 여행 가이드 · June 2026 · 즐거운 여행 되세요! 🌴</div>
 
@@ -485,10 +705,15 @@ const SPOT_COORDS = [
   [22.6458, 120.3089], // 14 삼봉궁
   [22.6972, 120.2978], // 15 쭤잉 고성
   [22.6267, 120.2644], // 16 국립 중산대학교 & 시즈완
+  [22.6886, 120.2975], // 17 충렬사 & 러브 전망대
+  [22.6936, 120.3017], // 18 좌잉 계명사
+  [22.6111, 120.2733], // 19 법흥선사
+  [22.6486, 120.2706], // 20 서우산 동물원
+  [22.6094, 120.2647], // 21 치진 어항 수산시장
 ];
 
 const FOOD_COORDS = [
-  // 🏆 현지인 단골
+  // 🏆 현지인 단골 (10)
   [22.6267, 120.2889], // 강위엔 우육면
   [22.6261, 120.2894], // 야러우전
   [22.6278, 120.2906], // 북강채삼대
@@ -496,7 +721,10 @@ const FOOD_COORDS = [
   [22.6256, 120.2894], // 廣東汕頭 소고기
   [22.6339, 120.3233], // 완리샹 훈툰
   [22.6272, 120.3586], // 봉산 바완
-  // 🇰🇷 한국인 필수
+  [22.6289, 120.3100], // 전금육조반
+  [22.6261, 120.2917], // 삼우우육면
+  [22.6322, 120.3044], // 후덕복
+  // 🇰🇷 한국인 필수 (9)
   [22.6378, 120.3028], // 흥륭거
   [22.6383, 120.3056], // 라오지앙 밀크티
   [22.6894, 120.3022], // 딘타이펑
@@ -504,7 +732,9 @@ const FOOD_COORDS = [
   [22.6267, 120.2889], // 화다 밀크티
   [22.6894, 120.3022], // 춘수이탕
   [22.6367, 120.3033], // 콰이러우판
-  // 🍡 가오슝 특산
+  [22.6183, 120.3217], // Dimdimsum
+  [22.6350, 120.3050], // 香遇小火鍋
+  // 🍡 가오슝 특산 (11)
   [22.6367, 120.3033], // 파파야 우유
   [22.6614, 120.3097], // 천사 지파이
   [22.6367, 120.3033], // 굴전
@@ -512,6 +742,10 @@ const FOOD_COORDS = [
   [22.6339, 120.3233], // 흑설탕 분위안
   [22.6222, 120.3067], // 호화 빙수
   [22.6367, 120.3033], // 계란빵
+  [22.6258, 120.3083], // 하이즈빙
+  [22.6058, 120.2669], // Cijin Sunset Bar
+  [22.6083, 120.2689], // 正家興 카스테라
+  [22.6094, 120.2647], // 萬二小吃店
 ];
 
 // 쿵샹 디자인 호텔 좌표 (신싱구 린썬이루 237, 미려도역 인근)
@@ -599,6 +833,185 @@ function switchMode(mode) {
 
 // 페이지 로드 시 숙소 기준으로 초기화
 window.addEventListener('load', () => updateDists(HOTEL[0], HOTEL[1]));
+
+// ===== 환율 계산기 =====
+let TWD_TO_KRW = 44; // 기본 fallback
+
+async function fetchExchangeRate() {
+  const today = new Date().toISOString().slice(0, 10);
+  const cacheKey = 'kh_rate_' + today;
+  const cached = localStorage.getItem(cacheKey);
+  if (cached) {
+    TWD_TO_KRW = parseFloat(cached);
+    setRateNote(TWD_TO_KRW, today, true);
+    return;
+  }
+  try {
+    const res = await fetch('https://api.frankfurter.app/latest?from=TWD&to=KRW');
+    const data = await res.json();
+    TWD_TO_KRW = Math.round(data.rates.KRW * 10) / 10;
+    localStorage.setItem(cacheKey, TWD_TO_KRW);
+    setRateNote(TWD_TO_KRW, data.date, false);
+  } catch(e) {
+    setRateNote(44, null, false);
+  }
+}
+
+function setRateNote(rate, date, fromCache) {
+  const note = document.getElementById('currencyNote');
+  if (!note) return;
+  if (date) {
+    note.textContent = `※ 1 TWD ≈ ${rate}원 (${date} 기준)`;
+  } else {
+    note.textContent = `※ 1 TWD ≈ ${rate}원 (고정값)`;
+  }
+  updateCurrency();
+}
+
+function updateCurrency() {
+  const input = document.getElementById('currencyInput');
+  const result = document.getElementById('currencyResult');
+  if (!input || !result) return;
+  const val = parseFloat(input.value);
+  if (!isNaN(val) && val > 0) {
+    result.textContent = '≈ ₩' + Math.round(val * TWD_TO_KRW).toLocaleString();
+  } else {
+    result.textContent = '—';
+  }
+}
+
+// ===== 지역 필터 =====
+const SPOT_AREAS = [
+  'sinxing','yancheng','cijin','cijin','zuoying',
+  'sinxing','sinxing','zuoying','other','other',
+  'yancheng','cijin','other','sinxing','zuoying',
+  'cijin','zuoying','zuoying','cijin','other','cijin'
+];
+const FOOD_AREAS = [
+  'yancheng','yancheng','yancheng','yancheng','yancheng','other','other','sinxing','yancheng','sinxing',
+  'sinxing','sinxing','zuoying','other','yancheng','zuoying','sinxing','other','sinxing',
+  'sinxing','zuoying','sinxing','other','other','other','sinxing','sinxing','cijin','cijin','cijin'
+];
+const AREA_LABELS = { all:'전체', sinxing:'신싱구 (숙소)', yancheng:'옌청구 (항구)', cijin:'치진섬', zuoying:'쭤잉구 (북부)', other:'기타' };
+
+let currentSpotArea = 'all';
+let currentFoodArea = 'all';
+
+function createAreaFilter(areas, currentAreaKey, onSelect) {
+  const wrap = document.createElement('div');
+  wrap.className = 'area-filter';
+  Object.entries(AREA_LABELS).forEach(([key, label]) => {
+    const btn = document.createElement('button');
+    btn.className = 'area-btn' + (key === currentAreaKey ? ' active' : '');
+    btn.textContent = label;
+    btn.onclick = () => onSelect(key, wrap);
+    wrap.appendChild(btn);
+  });
+  return wrap;
+}
+
+function applySpotFilter(area) {
+  currentSpotArea = area;
+  const links = document.querySelectorAll('.spots-grid > a');
+  links.forEach((a, i) => {
+    const spotArea = SPOT_AREAS[i] || 'other';
+    a.classList.toggle('area-hidden', area !== 'all' && spotArea !== area);
+  });
+}
+
+function applyFoodFilter(area) {
+  currentFoodArea = area;
+  const items = document.querySelectorAll('.food-item');
+  items.forEach((item, i) => {
+    const foodArea = FOOD_AREAS[i] || 'other';
+    item.classList.toggle('area-hidden', area !== 'all' && foodArea !== area);
+  });
+}
+
+function initAreaFilters() {
+  const spotsGrid = document.querySelector('.spots-grid');
+  if (spotsGrid) {
+    const hint = document.createElement('p');
+    hint.className = 'visit-hint';
+    hint.textContent = '※ 카드 길게 누르면 방문 체크';
+    spotsGrid.parentNode.insertBefore(hint, spotsGrid);
+    const filter = createAreaFilter(SPOT_AREAS, 'all', (key, wrap) => {
+      wrap.querySelectorAll('.area-btn').forEach(b => b.classList.remove('active'));
+      wrap.querySelector(`button:nth-child(${Object.keys(AREA_LABELS).indexOf(key)+1})`).classList.add('active');
+      applySpotFilter(key);
+    });
+    spotsGrid.parentNode.insertBefore(filter, hint);
+  }
+  const foodGrid = document.querySelector('.food-grid');
+  if (foodGrid) {
+    const filter = createAreaFilter(FOOD_AREAS, 'all', (key, wrap) => {
+      wrap.querySelectorAll('.area-btn').forEach(b => b.classList.remove('active'));
+      wrap.querySelector(`button:nth-child(${Object.keys(AREA_LABELS).indexOf(key)+1})`).classList.add('active');
+      applyFoodFilter(key);
+    });
+    foodGrid.parentNode.insertBefore(filter, foodGrid);
+  }
+}
+
+// ===== 방문 체크 =====
+function loadVisited() {
+  try { return JSON.parse(localStorage.getItem('kh_visited') || '{}'); } catch(e) { return {}; }
+}
+function saveVisited(v) {
+  try { localStorage.setItem('kh_visited', JSON.stringify(v)); } catch(e) {}
+}
+function toggleVisit(type, idx) {
+  const v = loadVisited();
+  const key = type + '_' + idx;
+  v[key] = !v[key];
+  saveVisited(v);
+  applyVisited();
+}
+function applyVisited() {
+  const v = loadVisited();
+  document.querySelectorAll('.spots-grid > a').forEach((a, i) => {
+    const card = a.querySelector('.spot-card');
+    if (card) card.classList.toggle('visited', !!v['spot_' + i]);
+  });
+  document.querySelectorAll('.food-item').forEach((item, i) => {
+    item.classList.toggle('visited', !!v['food_' + i]);
+  });
+}
+
+function initVisitCheck() {
+  // Spot cards: add visit badge + long-press
+  document.querySelectorAll('.spots-grid > a').forEach((a, i) => {
+    const card = a.querySelector('.spot-card');
+    if (!card) return;
+    const badge = document.createElement('div');
+    badge.className = 'visit-badge';
+    badge.textContent = '✓ 방문';
+    card.appendChild(badge);
+    let timer;
+    card.addEventListener('touchstart', () => { timer = setTimeout(() => { toggleVisit('spot', i); if(navigator.vibrate) navigator.vibrate(40); }, 600); }, { passive:true });
+    card.addEventListener('touchend', () => clearTimeout(timer));
+    card.addEventListener('touchmove', () => clearTimeout(timer));
+    card.addEventListener('dblclick', e => { e.preventDefault(); toggleVisit('spot', i); });
+  });
+  // Food items: add visited mark + long-press
+  document.querySelectorAll('.food-item').forEach((item, i) => {
+    const nameEl = item.querySelector('.food-name');
+    if (nameEl) { const m = document.createElement('span'); m.className = 'food-visited-mark'; m.textContent = ' ✓'; nameEl.appendChild(m); }
+    let timer;
+    item.addEventListener('touchstart', () => { timer = setTimeout(() => { toggleVisit('food', i); if(navigator.vibrate) navigator.vibrate(40); }, 600); }, { passive:true });
+    item.addEventListener('touchend', () => clearTimeout(timer));
+    item.addEventListener('touchmove', () => clearTimeout(timer));
+    item.addEventListener('dblclick', e => { e.preventDefault(); toggleVisit('food', i); });
+  });
+  applyVisited();
+}
+
+// Init all new features on load
+document.addEventListener('DOMContentLoaded', () => {
+  fetchExchangeRate();
+  initAreaFilters();
+  initVisitCheck();
+});
 </script>
 
 </body>
