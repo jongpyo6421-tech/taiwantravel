@@ -123,6 +123,21 @@
   .tip-text { font-size: 12.5px; line-height: 1.6; color: rgba(58,42,26,0.72); }
   .tip-text strong { color: #3a2a1a; display: block; margin-bottom: 2px; font-size: 13px; }
 
+  /* 타이난 당일치기 */
+  .tainan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .tainan-route { display: flex; flex-direction: column; }
+  .tr-step { display: flex; gap: 10px; align-items: flex-start; padding: 7px 0; border-bottom: 1px solid rgba(180,130,80,0.12); font-size: 13px; }
+  .tr-step:last-child { border-bottom: none; padding-bottom: 0; }
+  .tr-time { color: #c47055; font-weight: 800; font-size: 11.5px; min-width: 40px; padding-top: 1px; flex-shrink: 0; }
+  .tr-item { color: #3a2a1a; line-height: 1.45; font-size: 12.5px; }
+  .tainan-food-row { display: flex; gap: 10px; margin-bottom: 40px; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .tainan-food-row::-webkit-scrollbar { display: none; }
+  .tainan-food-card { background: #fffaf3; border: 1px solid rgba(180,130,80,0.2); border-radius: 12px; padding: 14px 10px; text-align: center; flex: 1; min-width: 76px; }
+  .tfc-icon { font-size: 22px; margin-bottom: 5px; }
+  .tfc-name { font-size: 12px; font-weight: 800; color: #3a2a1a; line-height: 1.4; margin-bottom: 4px; }
+  .tfc-name small { font-size: 10px; font-weight: 400; color: rgba(58,42,26,0.45); display: block; }
+  .tfc-note { font-size: 10px; color: #c47055; font-weight: 700; }
+
   .footer { text-align: center; padding: 30px; border-top: 1px solid rgba(180,130,80,0.2); color: rgba(58,42,26,0.35); font-size: 12px; }
 
   /* 거리 토글 필 — 섹션 타이틀 안 */
@@ -137,7 +152,7 @@
   .hotel-bar .hotel-info { opacity: 0.92; }
 
   /* ===== 환율 계산기 ===== */
-  .currency-bar { background: linear-gradient(90deg, #4a5e8a, #3a4e7a); padding: 12px 40px; display: flex; align-items: center; gap: 16px; font-size: 13px; font-weight: 500; flex-wrap: wrap; color: #fff; }
+  .currency-bar { background: linear-gradient(90deg, #4a5e8a, #3a4e7a); padding: 12px 40px; display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 500; flex-wrap: wrap; color: #fff; }
   .currency-label { font-weight: 800; font-size: 14px; color: #ffe0a0; white-space: nowrap; }
   .currency-inputs { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
   .currency-prefix { font-size: 15px; font-weight: 700; opacity: 0.85; }
@@ -248,6 +263,7 @@
     .container { padding: 28px 16px; }
     .app-grid { grid-template-columns: 1fr 1fr; }
     .emergency-grid { grid-template-columns: 1fr 1fr; }
+    .tainan-grid { grid-template-columns: 1fr 1fr; }
   }
 
   /* 일반 스마트폰 */
@@ -266,6 +282,7 @@
     .night-market-grid { grid-template-columns: 1fr; }
     .bottom-grid { grid-template-columns: 1fr; }
     .tips-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .tainan-grid { grid-template-columns: 1fr; }
 
     .spot-name { font-size: 13px; }
     .spot-emoji { font-size: 24px; }
@@ -285,7 +302,7 @@
     .info-value { width: 100%; text-align: left; font-size: 13px; font-weight: 700; }
     .hotel-bar { padding: 12px 16px; gap: 10px; }
     .currency-bar { padding: 12px 16px; gap: 10px; }
-    .currency-result { font-size: 16px; }
+    .currency-result { font-size: 16px; min-width: 0; }
     .app-grid { grid-template-columns: 1fr; }
     .emergency-grid { grid-template-columns: 1fr; }
   }
@@ -368,13 +385,11 @@
 </div>
 
 <div class="currency-bar">
-  <span class="currency-label">💱 환율 계산기</span>
-  <div class="currency-inputs">
-    <span class="currency-prefix">NT$</span>
-    <input class="currency-input" id="currencyInput" type="number" placeholder="금액 입력" oninput="updateCurrency()" inputmode="numeric">
-    <span class="currency-eq">=</span>
-    <span class="currency-result" id="currencyResult">—</span>
-  </div>
+  <span class="currency-label">💱</span>
+  <span class="currency-prefix">NT$</span>
+  <input class="currency-input" id="currencyInput" type="number" placeholder="금액 입력" oninput="updateCurrency()" inputmode="numeric">
+  <span class="currency-eq">=</span>
+  <span class="currency-result" id="currencyResult">—</span>
   <span class="currency-note" id="currencyNote">※ 환율 불러오는 중…</span>
 </div>
 
@@ -385,6 +400,7 @@
   <button class="nav-tab" onclick="scrollToSec('sec-night')">🌙 야시장</button>
   <button class="nav-tab" onclick="scrollToSec('sec-transport')">✈️ 교통</button>
   <button class="nav-tab" onclick="scrollToSec('sec-tips')">✅ 꿀팁</button>
+  <button class="nav-tab" onclick="scrollToSec('sec-tainan')">🏯 타이난</button>
   <button class="nav-tab" onclick="scrollToSec('sec-apps')">📱 앱</button>
   <button class="nav-tab" onclick="scrollToSec('sec-emergency')">🆘 긴급</button>
 </div>
@@ -443,7 +459,7 @@
     <div class="food-category">
       <div class="food-cat-title">🏆 현지인 단골 맛집</div>
       <a href="https://maps.google.com/?q=港園牛肉麵+高雄鹽埕區" target="_blank" class="food-item">
-        <div><div class="food-name">강위엔 우육면 <span class="michelin">60년 老鋪</span></div><div class="food-menu">우육면 · 돼지발 비빔면</div><div class="food-stars">★★★★☆ 4.2 (리뷰 8,000+)</div><div class="food-map">📍 옌청푸역 근처</div><div class="food-dist">🚇 MRT 옌청푸역 하차 도보 10분 (총 약 17분)</div></div>
+        <div><div class="food-name">강위엔 우육면 <span class="michelin">60년 老鋪</span></div><div class="food-menu">우육면 · 족발 비빔면</div><div class="food-stars">★★★★☆ 4.2 (리뷰 8,000+)</div><div class="food-map">📍 옌청푸역 근처</div><div class="food-dist">🚇 MRT 옌청푸역 하차 도보 10분 (총 약 17분)</div></div>
         <div class="food-price-tag">NT$120~160</div>
       </a>
       <a href="https://maps.google.com/?q=鴨肉珍+高雄鹽埕區" target="_blank" class="food-item">
@@ -466,7 +482,7 @@
         <div><div class="food-name">완리샹 훈툰 <span class="michelin">50년 老鋪</span></div><div class="food-menu">새우완탕 · 완탕면</div><div class="food-stars">★★★★☆ 4.3 (리뷰 3,200+)</div><div class="food-map">📍 첸진구</div><div class="food-dist">🚇 MRT 첸진역 도보 약 10분 (총 약 20분)</div></div>
         <div class="food-price-tag">NT$50~80</div>
       </a>
-      <a href="https://maps.google.com/?q=鳳山肉圓+高雄" target="_blank" class="food-item">
+      <a href="https://maps.google.com/?q=高雄市鳳山區勝利路107號+工協市場肉圓" target="_blank" class="food-item">
         <div><div class="food-name">봉산 바완</div><div class="food-menu">쌀경단 튀김 (가오슝 스타일)</div><div class="food-stars">★★★★☆ 4.2 (리뷰 1,800+)</div><div class="food-map">📍 펑산구</div><div class="food-dist">🚇 MRT 펑산역 하차 도보 약 10분 (총 약 30분)</div></div>
         <div class="food-price-tag">NT$40~60</div>
       </a>
@@ -520,6 +536,10 @@
       <a href="https://maps.google.com/?q=香遇小火鍋+高雄" target="_blank" class="food-item">
         <div><div class="food-name">香遇小火鍋</div><div class="food-menu">우유 베이스 훠궈 · 1인 전골</div><div class="food-stars">★★★★☆ 4.0</div><div class="food-map">📍 신싱구</div><div class="food-dist">🚇 MRT 미려도역 도보 약 12분 (총 약 18분)</div></div>
         <div class="food-price-tag">NT$250~400</div>
+      </a>
+      <a href="https://maps.google.com/?q=高雄市前金區成功一路266號+漢來海港餐廳" target="_blank" class="food-item">
+        <div><div class="food-name">漢來海港 뷔페</div><div class="food-menu">해산물 뷔페 100+ · 43층 오션뷰</div><div class="food-stars">★★★★☆ 4.3</div><div class="food-map">📍 전금구 (43층)</div><div class="food-dist">🚇 MRT 중앙공원역 도보 약 10분 (총 약 15분)</div></div>
+        <div class="food-price-tag">NT$1,000~1,500</div>
       </a>
     </div>
     <div class="food-category">
@@ -583,37 +603,37 @@
       <div class="mrt-v-col">
         <div class="mrt-v-header" style="background:#e83535;">🔴 레드선</div>
         <div class="mrt-v-list mrt-vl-r">
-          <div class="mrt-v-item"><span class="mrt-nb-r"></span><div class="mrt-v-text">左營<br><small>쭤잉 (고속철)</small></div></div>
-          <div class="mrt-v-item"><span class="mrt-nb-r"></span><div class="mrt-v-text key">巨蛋<br><small>★ 루이펑 야시장</small></div></div>
-          <div class="mrt-v-item"><span class="mrt-nb-r"></span><div class="mrt-v-text">後驛<br><small>후이역</small></div></div>
-          <div class="mrt-v-item"><span class="mrt-nb-r"></span><div class="mrt-v-text">高雄車站<br><small>가오슝역</small></div></div>
-          <div class="mrt-v-item"><span class="mrt-nb-r"></span><div class="mrt-v-text">中央公園<br><small>중앙공원</small></div></div>
-          <div class="mrt-v-item"><span class="mrt-nb-x"></span><div class="mrt-v-text transfer">美麗島<br><small>★ 미려도 (환승)</small></div></div>
-          <div class="mrt-v-item"><span class="mrt-nb-r"></span><div class="mrt-v-text key">鹽埕埔<br><small>★ 맛집 밀집</small></div></div>
-          <div class="mrt-v-item"><span class="mrt-nb-x"></span><div class="mrt-v-text transfer">西子灣<br><small>★ 치진 페리</small></div></div>
-          <div class="mrt-v-item last"><span class="mrt-nb-r"></span><div class="mrt-v-text">小港<br><small>공항</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-r"></span><div class="mrt-v-text">쭤잉역<br><small>左營 · 고속철·고속버스</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-r"></span><div class="mrt-v-text key">쥐단역<br><small>巨蛋 ★ 루이펑 야시장</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-r"></span><div class="mrt-v-text">후역<br><small>後驛</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-r"></span><div class="mrt-v-text">가오슝역<br><small>高雄車站</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-r"></span><div class="mrt-v-text">중앙공원역<br><small>中央公園</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-x"></span><div class="mrt-v-text transfer">미려도역<br><small>美麗島 ★ 환승</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-r"></span><div class="mrt-v-text key">옌청푸역<br><small>鹽埕埔 ★ 맛집 밀집</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-x"></span><div class="mrt-v-text transfer">시즈완역<br><small>西子灣 ★ 치진 페리</small></div></div>
+          <div class="mrt-v-item last"><span class="mrt-nb-r"></span><div class="mrt-v-text">샤오강역<br><small>小港 · 공항</small></div></div>
         </div>
       </div>
       <div class="mrt-v-col">
         <div class="mrt-v-header" style="background:#f07d00;">🟠 오렌지선</div>
         <div class="mrt-v-list mrt-vl-o">
-          <div class="mrt-v-item"><span class="mrt-nb-x"></span><div class="mrt-v-text transfer">西子灣<br><small>★ 치진 페리 (환승)</small></div></div>
-          <div class="mrt-v-item"><span class="mrt-nb-o"></span><div class="mrt-v-text key">鹽埕埔<br><small>★ 맛집</small></div></div>
-          <div class="mrt-v-item"><span class="mrt-nb-x"></span><div class="mrt-v-text transfer">美麗島<br><small>★ 환승</small></div></div>
-          <div class="mrt-v-item"><span class="mrt-nb-o"></span><div class="mrt-v-text key">市議會<br><small>★ 아이허 유람선</small></div></div>
-          <div class="mrt-v-item"><span class="mrt-nb-o"></span><div class="mrt-v-text">文化中心<br><small>문화중심</small></div></div>
-          <div class="mrt-v-item"><span class="mrt-nb-o"></span><div class="mrt-v-text key">衛武營<br><small>★ 문화센터</small></div></div>
-          <div class="mrt-v-item last"><span class="mrt-nb-o"></span><div class="mrt-v-text">鳳山<br><small>펑산</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-x"></span><div class="mrt-v-text transfer">시즈완역<br><small>西子灣 ★ 치진 페리 (환승)</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-o"></span><div class="mrt-v-text key">옌청푸역<br><small>鹽埕埔 ★ 맛집</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-x"></span><div class="mrt-v-text transfer">미려도역<br><small>美麗島 ★ 환승</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-o"></span><div class="mrt-v-text key">시의회역<br><small>市議會 ★ 아이허 유람선</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-o"></span><div class="mrt-v-text">문화중심역<br><small>文化中心</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-o"></span><div class="mrt-v-text key">웨이우잉역<br><small>衛武營 ★ 문화센터</small></div></div>
+          <div class="mrt-v-item last"><span class="mrt-nb-o"></span><div class="mrt-v-text">펑산역<br><small>鳳山</small></div></div>
         </div>
       </div>
       <div class="mrt-v-col">
         <div class="mrt-v-header" style="background:#00a860;">🟢 경전철 (LRT)</div>
         <div class="mrt-v-list mrt-vl-g">
-          <div class="mrt-v-item"><span class="mrt-nb-g"></span><div class="mrt-v-text key">哈瑪星<br><small>★ 치진 페리 출발</small></div></div>
-          <div class="mrt-v-item"><span class="mrt-nb-g"></span><div class="mrt-v-text key">駁二蓬萊<br><small>★ 보얼 예술특구</small></div></div>
-          <div class="mrt-v-item"><span class="mrt-nb-g"></span><div class="mrt-v-text">駁二大義<br><small>보얼 대의</small></div></div>
-          <div class="mrt-v-item"><span class="mrt-nb-g"></span><div class="mrt-v-text">凱旋中華<br><small>카이쉔</small></div></div>
-          <div class="mrt-v-item last"><span class="mrt-nb-g"></span><div class="mrt-v-text">夢時代<br><small>드림몰</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-g"></span><div class="mrt-v-text key">하마싱역<br><small>哈瑪星 ★ 치진 페리</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-g"></span><div class="mrt-v-text key">보얼펑라이역<br><small>駁二蓬萊 ★ 예술특구</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-g"></span><div class="mrt-v-text">보얼다이역<br><small>駁二大義</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-g"></span><div class="mrt-v-text">카이쉔역<br><small>凱旋中華</small></div></div>
+          <div class="mrt-v-item last"><span class="mrt-nb-g"></span><div class="mrt-v-text">멍시다이역<br><small>夢時代 · 드림몰</small></div></div>
         </div>
       </div>
     </div>
@@ -679,13 +699,63 @@
     <div class="tip-card"><span class="tip-icon">🔥</span><div class="tip-text"><strong>한낮 12~15시 실내</strong>직사광선+습도 최강. 실내 냉방 명소 배치 필수</div></div>
   </div>
 
+  <div id="sec-tainan" class="section-title"><span class="emoji">🏯</span> 타이난 당일치기 <span style="font-size:13px;font-weight:400;color:rgba(58,42,26,0.4);margin-left:4px;">클릭→구글맵</span></div>
+  <div class="tainan-grid">
+    <div class="info-card">
+      <div class="info-card-title">🚆 가오슝 → 타이난 이동</div>
+      <div class="info-row"><span class="info-label">고속철 (HSR)</span><span class="info-value green">약 12분 · NT$160</span></div>
+      <div class="info-row"><span class="info-label">출발역</span><span class="info-value"><a href="https://maps.google.com/?q=高鐵左營站" target="_blank" style="color:inherit;text-decoration:none;">쭤잉역 (高鐵左營) 📍</a></span></div>
+      <div class="info-row"><span class="info-label">일반기차 (TRA)</span><span class="info-value">약 35분 · NT$69</span></div>
+      <div class="info-row"><span class="info-label">출발역</span><span class="info-value"><a href="https://maps.google.com/?q=高雄車站" target="_blank" style="color:inherit;text-decoration:none;">가오슝역 (高雄車站) 📍</a></span></div>
+      <div class="info-row"><span class="info-label">타이난역 도착 후</span><span class="info-value"><a href="https://maps.google.com/maps/dir/?api=1&destination=台南車站&travelmode=transit" target="_blank" class="app-dl">길찾기 →</a></span></div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title">🗺️ 추천 하루 코스</div>
+      <div class="tainan-route">
+        <div class="tr-step"><span class="tr-time">08:00</span><span class="tr-item">🥩 우육탕으로 아침 — 8시 전 필수 <a href="https://maps.google.com/?q=台南牛肉湯" target="_blank" class="slot-map-link">지도↗</a></span></div>
+        <div class="tr-step"><span class="tr-time">09:30</span><span class="tr-item">🏯 적감루 + 공자묘 — 도보 5분 <a href="https://maps.google.com/?q=赤崁樓+台南" target="_blank" class="slot-map-link">지도↗</a></span></div>
+        <div class="tr-step"><span class="tr-time">12:00</span><span class="tr-item">🍜 담자면 점심 (도두원조담자면) <a href="https://maps.google.com/?q=度小月擔仔麵+台南" target="_blank" class="slot-map-link">지도↗</a></span></div>
+        <div class="tr-step"><span class="tr-time">13:30</span><span class="tr-item">⚓ 안핑 요새 + 수상 골목 <a href="https://maps.google.com/?q=安平古堡+台南" target="_blank" class="slot-map-link">지도↗</a></span></div>
+        <div class="tr-step"><span class="tr-time">16:00</span><span class="tr-item">📸 신농가 골목 산책 · 카페 <a href="https://maps.google.com/?q=台南市中西區神農街" target="_blank" class="slot-map-link">지도↗</a></span></div>
+        <div class="tr-step"><span class="tr-time">18:00</span><span class="tr-item">🚆 타이난역 → 가오슝 복귀 <a href="https://maps.google.com/maps/dir/?api=1&origin=台南車站&destination=高雄車站&travelmode=transit" target="_blank" class="slot-map-link">길찾기↗</a></span></div>
+      </div>
+    </div>
+  </div>
+  <div class="tainan-food-row">
+    <a href="https://maps.google.com/?q=台南牛肉湯" target="_blank" style="text-decoration:none;color:inherit;" class="tainan-food-card">
+      <div class="tfc-icon">🥩</div>
+      <div class="tfc-name">우육탕<small>牛肉湯</small></div>
+      <div class="tfc-note">아침 8시 전 必</div>
+    </a>
+    <a href="https://maps.google.com/?q=度小月擔仔麵+台南" target="_blank" style="text-decoration:none;color:inherit;" class="tainan-food-card">
+      <div class="tfc-icon">🍜</div>
+      <div class="tfc-name">담자면<small>擔仔麵</small></div>
+      <div class="tfc-note">타이난 원조</div>
+    </a>
+    <a href="https://maps.google.com/?q=棺材板+台南" target="_blank" style="text-decoration:none;color:inherit;" class="tainan-food-card">
+      <div class="tfc-icon">🫙</div>
+      <div class="tfc-name">관재판<small>棺材板</small></div>
+      <div class="tfc-note">타이난 명물</div>
+    </a>
+    <a href="https://maps.google.com/?q=冰鄉+台南+망고빙수" target="_blank" style="text-decoration:none;color:inherit;" class="tainan-food-card">
+      <div class="tfc-icon">🥭</div>
+      <div class="tfc-name">망고빙수<small>芒果冰</small></div>
+      <div class="tfc-note">타이난이 원조</div>
+    </a>
+    <a href="https://maps.google.com/?q=虱目魚粥+台南" target="_blank" style="text-decoration:none;color:inherit;" class="tainan-food-card">
+      <div class="tfc-icon">🐟</div>
+      <div class="tfc-name">밀크피시죽<small>虱目魚粥</small></div>
+      <div class="tfc-note">현지인 아침식사</div>
+    </a>
+  </div>
+
   <div id="sec-apps" class="section-title"><span class="emoji">📱</span> 여행 필수 앱</div>
   <div class="app-grid">
     <div class="app-card"><span class="app-icon">💳</span><div><div class="app-name">아이패스 (一卡通)</div><div class="app-desc">MRT·버스·페리 15~50% 할인. 공항·역 구매 가능</div><a href="https://www.i-pass.com.tw" target="_blank" class="app-dl">공식 사이트 →</a></div></div>
-    <div class="app-card"><span class="app-icon">🗺️</span><div><div class="app-name">Google Maps</div><div class="app-desc">오프라인 지도 미리 다운로드. 가오슝 지역 저장 필수</div><a href="https://maps.google.com" target="_blank" class="app-dl">다운로드 →</a></div></div>
-    <div class="app-card"><span class="app-icon">🎟️</span><div><div class="app-name">Klook</div><div class="app-desc">현지 투어·입장권 예약. 불광산 셔틀 버스 예약 가능</div><a href="https://www.klook.com" target="_blank" class="app-dl">다운로드 →</a></div></div>
-    <div class="app-card"><span class="app-icon">🚌</span><div><div class="app-name">Bus+ 대만 버스</div><div class="app-desc">실시간 버스 도착 시간. 치진·불광산 이동 필수</div><a href="https://www.taiwanbus.tw" target="_blank" class="app-dl">다운로드 →</a></div></div>
-    <div class="app-card"><span class="app-icon">📸</span><div><div class="app-name">Papago 번역</div><div class="app-desc">카메라 번역. 메뉴판·간판 즉시 번역</div><a href="https://papago.naver.com" target="_blank" class="app-dl">다운로드 →</a></div></div>
+    <div class="app-card"><span class="app-icon">🗺️</span><div><div class="app-name">Google Maps</div><div class="app-desc">오프라인 지도 미리 다운로드. 가오슝 지역 저장 필수</div><a href="https://apps.apple.com/app/google-maps/id585027354" target="_blank" class="app-dl">App Store →</a>&nbsp;<a href="https://play.google.com/store/apps/details?id=com.google.android.apps.maps" target="_blank" class="app-dl">Google Play →</a></div></div>
+    <div class="app-card"><span class="app-icon">🎟️</span><div><div class="app-name">Klook</div><div class="app-desc">현지 투어·입장권 예약. 불광산 셔틀 버스 예약 가능</div><a href="https://apps.apple.com/app/klook-travel-activities/id961850126" target="_blank" class="app-dl">App Store →</a>&nbsp;<a href="https://play.google.com/store/apps/details?id=com.klook" target="_blank" class="app-dl">Google Play →</a></div></div>
+    <div class="app-card"><span class="app-icon">🚌</span><div><div class="app-name">Bus+ 대만 버스</div><div class="app-desc">실시간 버스 도착 시간. 치진·불광산 이동 필수</div><a href="https://www.taiwanbus.tw" target="_blank" class="app-dl">공식 사이트 →</a></div></div>
+    <div class="app-card"><span class="app-icon">📸</span><div><div class="app-name">Papago 번역</div><div class="app-desc">카메라 번역. 메뉴판·간판 즉시 번역</div><a href="https://apps.apple.com/app/papago/id1147874819" target="_blank" class="app-dl">App Store →</a>&nbsp;<a href="https://play.google.com/store/apps/details?id=com.naver.labs.translator" target="_blank" class="app-dl">Google Play →</a></div></div>
     <div class="app-card"><span class="app-icon">🌦️</span><div><div class="app-name">대만 기상청 날씨</div><div class="app-desc">시간별 스콜 예보. 우산 챙기기 전 필수 체크</div><a href="https://www.cwa.gov.tw" target="_blank" class="app-dl">공식 사이트 →</a></div></div>
   </div>
 
@@ -702,7 +772,7 @@
       <div class="emergency-title">🇰🇷 한국 공관</div>
       <div class="emergency-row"><span class="e-label">주대만 한국 대표부</span><span class="e-value"><a href="tel:+886227588320">02-2758-8320</a></span></div>
       <div class="emergency-row"><span class="e-label">영사콜센터(한국)</span><span class="e-value"><a href="tel:+82232100404">+82-2-3210-0404</a></span></div>
-      <div class="emergency-row"><span class="e-label">가오슝 관광안내</span><span class="e-value"><a href="tel:078009011">07-800-9011</a></span></div>
+      <div class="emergency-row"><span class="e-label">가오슝 관광안내</span><span class="e-value"><a href="tel:+88678009011">07-800-9011</a></span></div>
       <div class="emergency-row"><span class="e-label">긴급의료통역</span><span class="e-value"><a href="tel:0800030045">0800-030-045</a></span></div>
     </div>
   </div>
@@ -918,7 +988,7 @@ const SPOT_AREAS = [
 ];
 const FOOD_AREAS = [
   'yancheng','yancheng','yancheng','yancheng','yancheng','other','other','sinxing','yancheng','sinxing',
-  'sinxing','sinxing','zuoying','other','yancheng','zuoying','sinxing','other','sinxing',
+  'sinxing','sinxing','zuoying','other','yancheng','zuoying','sinxing','other','sinxing','other',
   'sinxing','zuoying','sinxing','other','other','other','sinxing','sinxing','cijin','cijin','cijin'
 ];
 const AREA_LABELS = { all:'전체', sinxing:'신싱구 (숙소)', yancheng:'옌청구 (항구)', cijin:'치진섬', zuoying:'쭤잉구 (북부)', other:'기타' };
@@ -1036,7 +1106,7 @@ function initVisitCheck() {
 }
 
 // ===== 섹션 탭 네비게이션 =====
-const NAV_SECS = ['sec-spots','sec-food','sec-mrt','sec-night','sec-transport','sec-tips','sec-apps','sec-emergency'];
+const NAV_SECS = ['sec-spots','sec-food','sec-mrt','sec-night','sec-transport','sec-tips','sec-tainan','sec-apps','sec-emergency'];
 
 function scrollToSec(id) {
   const el = document.getElementById(id);
@@ -1044,25 +1114,17 @@ function scrollToSec(id) {
   const navH = document.getElementById('navTabs')?.offsetHeight || 52;
   const top = el.getBoundingClientRect().top + window.scrollY - navH - 4;
   window.scrollTo({ top, behavior: 'smooth' });
-}
-
-function updateActiveTab() {
-  const navH = document.getElementById('navTabs')?.offsetHeight || 52;
-  let activeIdx = 0;
-  NAV_SECS.forEach((id, i) => {
-    const el = document.getElementById(id);
-    if (el && el.getBoundingClientRect().top <= navH + 24) activeIdx = i;
-  });
-  document.querySelectorAll('.nav-tab').forEach((t, i) => t.classList.toggle('active', i === activeIdx));
-  const activeTab = document.querySelectorAll('.nav-tab')[activeIdx];
-  if (activeTab) activeTab.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
+  // 클릭한 탭만 active — 스크롤 위치 무관
+  const idx = NAV_SECS.indexOf(id);
+  if (idx >= 0) {
+    document.querySelectorAll('.nav-tab').forEach((t, i) => t.classList.toggle('active', i === idx));
+    const activeTab = document.querySelectorAll('.nav-tab')[idx];
+    if (activeTab) activeTab.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
+  }
 }
 
 function initNavTabs() {
-  let ticking = false;
-  window.addEventListener('scroll', () => {
-    if (!ticking) { requestAnimationFrame(() => { updateActiveTab(); ticking = false; }); ticking = true; }
-  }, { passive: true });
+  // 스크롤 위치 기반 탭 변경 없음 — 클릭으로만 제어
 }
 
 // Init all new features on load
