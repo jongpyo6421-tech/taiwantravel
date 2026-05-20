@@ -28,11 +28,12 @@
   .hero-badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; position: relative; }
   .badge { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.35); padding: 8px 18px; border-radius: 20px; font-size: 13px; color: rgba(255,255,255,0.95); }
 
-  .weather-bar { background: linear-gradient(90deg, #d4703a, #e09828); padding: 14px 40px; display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 500; flex-wrap: wrap; color: #fff; }
+  .weather-bar { background: linear-gradient(90deg, #d4703a, #e09828); padding: 12px 40px; display: flex; align-items: center; gap: 16px; font-size: 13px; font-weight: 500; flex-wrap: wrap; color: #fff; }
+  .weather-title { font-size: 14px; font-weight: 800; white-space: nowrap; color: #fff8e0; }
 
   .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
 
-  .section-title { font-size: 22px; font-weight: 800; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; color: #3a2a1a; }
+  .section-title { font-size: 22px; font-weight: 800; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; color: #3a2a1a; scroll-margin-top: 56px; }
   .section-title .emoji { font-size: 26px; }
   .section-title::after { content: ''; flex: 1; height: 1px; background: rgba(180,130,80,0.28); margin-left: 12px; }
   .section-title.has-toggle::after { display: none; }
@@ -82,7 +83,7 @@
   .food-item { display: flex; flex-direction: column; padding: 9px 6px 46px; border-bottom: 1px solid rgba(180,130,80,0.18); cursor: pointer; border-radius: 8px; transition: all 0.2s; text-decoration: none; color: inherit; position: relative; }
   .food-item:hover { background: rgba(74,127,168,0.07); }
   .food-item:last-child { border-bottom: none; }
-  .food-name { font-size: 12.5px; font-weight: 600; line-height: 1.4; color: #3a2a1a; }
+  .food-name { font-size: 13px; font-weight: 800; line-height: 1.4; color: #3a2a1a; }
   .food-menu { font-size: 11px; color: rgba(58,42,26,0.5); margin-top: 2px; }
   .food-stars { color: #c06820; font-size: 11px; margin-top: 3px; }
   .food-item > div:first-child { padding-right: 70px; }
@@ -95,7 +96,7 @@
   /* 야시장 */
   .night-market-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 50px; }
   .nm-card { background: #fffaf3; border: 1px solid rgba(180,130,80,0.2); border-radius: 16px; padding: 22px; }
-  .nm-title { font-size: 16px; font-weight: 800; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; color: #3a2a1a; }
+  .nm-title { font-size: 14px; font-weight: 800; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; color: #3a2a1a; }
   .nm-title a { color: inherit; text-decoration: none; }
   .nm-title a:hover { color: #4a7fa8; }
   .nm-info { font-size: 12px; color: rgba(58,42,26,0.5); margin-bottom: 16px; }
@@ -131,7 +132,7 @@
 
   /* 숙소 정보 바 */
   .hotel-bar { background: linear-gradient(90deg, #7a9e7e, #5a8a6a); padding: 12px 40px; display: flex; align-items: center; gap: 16px; font-size: 13px; font-weight: 500; flex-wrap: wrap; color: #fff; }
-  .hotel-bar .hotel-name { font-weight: 800; font-size: 15px; color: #fff8e0; }
+  .hotel-bar .hotel-name { font-weight: 800; font-size: 14px; color: #fff8e0; }
   .hotel-bar .hotel-sep { opacity: 0.4; }
   .hotel-bar .hotel-info { opacity: 0.92; }
 
@@ -144,7 +145,7 @@
   .currency-input::placeholder { color: rgba(255,255,255,0.45); font-size: 13px; font-weight: 400; }
   .currency-eq { font-size: 18px; opacity: 0.6; }
   .currency-result { font-size: 18px; font-weight: 800; color: #ffe0a0; min-width: 160px; }
-  .currency-note { font-size: 11px; opacity: 0.55; margin-left: auto; }
+  .currency-note { font-size: 11px; opacity: 0.88; margin-left: auto; }
 
   /* ===== 지역 필터 ===== */
   .area-filter { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
@@ -189,28 +190,42 @@
   .mrt-dot-o { background: #f07d00; }
   .mrt-dot-g { background: #00a860; }
   .mrt-dot-x { background: #fff; border: 2px solid #888; box-shadow: 0 0 0 1.5px #888; }
-  .mrt-scroll { overflow-x: auto; padding-bottom: 8px; }
-  .mrt-line-block { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 24px; min-width: 600px; }
-  .mrt-line-block:last-child { margin-bottom: 0; }
-  .mrt-line-tag { font-size: 11px; font-weight: 800; color: #fff; padding: 4px 10px; border-radius: 6px; white-space: nowrap; flex-shrink: 0; margin-top: 8px; }
-  .mrt-stations { display: flex; align-items: flex-start; }
-  .mrt-st { display: flex; flex-direction: column; align-items: center; }
-  .mrt-st > div:first-child { display: flex; align-items: center; height: 20px; }
-  .mrt-node-r,.mrt-node-o,.mrt-node-g,.mrt-node-x { width: 12px; height: 12px; border-radius: 50%; border: 2px solid #fff; flex-shrink: 0; }
-  .mrt-node-r { background: #e83535; }
-  .mrt-node-o { background: #f07d00; }
-  .mrt-node-g { background: #00a860; }
-  .mrt-node-x { background: #fff; border: 2px solid #888; box-shadow: 0 0 0 1.5px #888; width: 14px; height: 14px; }
-  .mrt-rail-r,.mrt-rail-o,.mrt-rail-g { height: 3px; width: 52px; flex-shrink: 0; }
-  .mrt-rail-r { background: #e83535; }
-  .mrt-rail-o { background: #f07d00; }
-  .mrt-rail-g { background: #00a860; }
-  .mrt-sname { font-size: 9.5px; color: rgba(58,42,26,0.6); font-weight: 500; text-align: center; margin-top: 5px; max-width: 58px; line-height: 1.3; }
-  .mrt-sname small { font-size: 8.5px; color: rgba(58,42,26,0.45); }
-  .mrt-sname.key { color: #3a2a1a; font-weight: 800; }
-  .mrt-sname.key small { color: #c06820; font-weight: 700; }
-  .mrt-sname.transfer { color: #c04838; font-weight: 800; }
-  .mrt-sname.transfer small { color: #c04838; font-weight: 700; }
+  /* ===== MRT 세로 노선도 ===== */
+  .mrt-v-wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .mrt-v-header { font-size: 12px; font-weight: 800; color: #fff; padding: 7px 12px; border-radius: 8px; margin-bottom: 16px; text-align: center; }
+  .mrt-v-list { padding-left: 22px; }
+  .mrt-vl-r { border-left: 3px solid #e83535; }
+  .mrt-vl-o { border-left: 3px solid #f07d00; }
+  .mrt-vl-g { border-left: 3px solid #00a860; }
+  .mrt-v-item { position: relative; padding-bottom: 18px; }
+  .mrt-v-item.last { padding-bottom: 0; }
+  .mrt-v-item > span { position: absolute; left: -28px; top: 2px; width: 13px; height: 13px; border-radius: 50%; display: block; border: 2.5px solid #fffaf3; }
+  .mrt-nb-r { background: #e83535; }
+  .mrt-nb-o { background: #f07d00; }
+  .mrt-nb-g { background: #00a860; }
+  .mrt-nb-x { background: #fffaf3 !important; border: 2px solid #888 !important; box-shadow: 0 0 0 1.5px #888; }
+  .mrt-v-text { font-size: 11px; color: rgba(58,42,26,0.6); line-height: 1.4; }
+  .mrt-v-text small { font-size: 9.5px; color: rgba(58,42,26,0.42); display: block; margin-top: 1px; }
+  .mrt-v-text.key { color: #3a2a1a; font-weight: 800; }
+  .mrt-v-text.key small { color: #c06820; font-weight: 700; }
+  .mrt-v-text.transfer { color: #c04838; font-weight: 800; }
+  .mrt-v-text.transfer small { color: #c04838; }
+  @media (max-width: 600px) {
+    .mrt-v-wrap { gap: 10px; }
+    .mrt-v-header { font-size: 10px; padding: 5px 7px; margin-bottom: 12px; }
+    .mrt-v-text { font-size: 10px; }
+    .mrt-v-text small { font-size: 9px; }
+    .mrt-v-item { padding-bottom: 13px; }
+    .mrt-v-item > span { left: -24px; width: 11px; height: 11px; top: 1px; }
+    .mrt-v-list { padding-left: 18px; }
+  }
+
+  /* ===== 섹션 탭 네비게이션 ===== */
+  .nav-tabs { position: sticky; top: 0; z-index: 100; background: #f5ede0; display: flex; overflow-x: auto; gap: 6px; padding: 8px 16px; border-bottom: 1px solid rgba(180,130,80,0.22); -webkit-overflow-scrolling: touch; scrollbar-width: none; box-shadow: 0 2px 8px rgba(180,130,80,0.1); }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .nav-tab { border: 1.5px solid rgba(180,130,80,0.3); background: transparent; color: rgba(58,42,26,0.55); font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 20px; cursor: pointer; white-space: nowrap; font-family: inherit; transition: all 0.18s; flex-shrink: 0; }
+  .nav-tab.active { background: #c47055; border-color: #c47055; color: #fff; }
+  .nav-tab:hover:not(.active) { border-color: rgba(196,112,85,0.5); color: #c47055; }
 
   /* ===== 반응형 ===== */
 
@@ -268,6 +283,7 @@
     .info-row { flex-wrap: wrap; gap: 2px; padding: 10px 0; }
     .info-label { width: 100%; font-size: 11px; }
     .info-value { width: 100%; text-align: left; font-size: 13px; font-weight: 700; }
+    .hotel-bar { padding: 12px 16px; gap: 10px; }
     .currency-bar { padding: 12px 16px; gap: 10px; }
     .currency-result { font-size: 16px; }
     .app-grid { grid-template-columns: 1fr; }
@@ -298,6 +314,7 @@
     .spot-card { padding: 14px 16px; }
     .spot-name { font-size: 14px; }
     .spot-stars { font-size: 12px; }
+    .food-stars { font-size: 12px; }
     .spot-info { font-size: 12px; }
     .spot-price { font-size: 11px; }
     .spot-emoji { font-size: 28px; }
@@ -340,7 +357,7 @@
 
 <div class="weather-bar">
   <span>⚠️</span>
-  <strong>6월 핵심 전략</strong> — 오전 야외 → 오후 12~15시 실내(냉방) → 저녁 야경·야시장 &nbsp;|&nbsp; 접이식 우산 + 얇은 긴팔 필수
+  <strong class="weather-title">6월 핵심 전략</strong> — 오전 야외 → 오후 12~15시 실내(냉방) → 저녁 야경·야시장 &nbsp;|&nbsp; 접이식 우산 + 얇은 긴팔 필수
 </div>
 
 <div class="hotel-bar">
@@ -361,10 +378,21 @@
   <span class="currency-note" id="currencyNote">※ 환율 불러오는 중…</span>
 </div>
 
+<div class="nav-tabs" id="navTabs">
+  <button class="nav-tab active" onclick="scrollToSec('sec-spots')">🏛 명소</button>
+  <button class="nav-tab" onclick="scrollToSec('sec-food')">🍜 맛집</button>
+  <button class="nav-tab" onclick="scrollToSec('sec-mrt')">🚇 MRT</button>
+  <button class="nav-tab" onclick="scrollToSec('sec-night')">🌙 야시장</button>
+  <button class="nav-tab" onclick="scrollToSec('sec-transport')">✈️ 교통</button>
+  <button class="nav-tab" onclick="scrollToSec('sec-tips')">✅ 꿀팁</button>
+  <button class="nav-tab" onclick="scrollToSec('sec-apps')">📱 앱</button>
+  <button class="nav-tab" onclick="scrollToSec('sec-emergency')">🆘 긴급</button>
+</div>
+
 <div class="container">
 
 
-  <div class="section-title has-toggle"><span class="emoji">🏛</span> 추천 명소 TOP 21 <span style="font-size:13px;font-weight:400;color:rgba(58,42,26,0.4);margin-left:4px;">클릭→구글맵</span><span class="title-line"></span><div class="dist-toggle-pill"><button class="btn-hotel active-tab" onclick="switchMode('hotel')">🏨 숙소</button><button class="btn-me" onclick="switchMode('me')">📍 내 위치</button></div></div>
+  <div id="sec-spots" class="section-title has-toggle"><span class="emoji">🏛</span> 추천 명소 TOP 21 <span style="font-size:13px;font-weight:400;color:rgba(58,42,26,0.4);margin-left:4px;">클릭→구글맵</span><span class="title-line"></span><div class="dist-toggle-pill"><button class="btn-hotel active-tab" onclick="switchMode('hotel')">🏨 숙소</button><button class="btn-me" onclick="switchMode('me')">📍 내 위치</button></div></div>
   <div class="spots-grid">
     <a href="https://maps.google.com/?q=美麗島捷運站+高雄" target="_blank" style="text-decoration:none;color:inherit;">
     <div class="spot-card"><div class="spot-rank">1</div><div class="spot-emoji">🌟</div><div class="spot-name">미려도역 빛의 돔</div><div class="spot-stars">★★★★★ 4.8</div><div class="spot-info">세계 최대 스테인드글라스<br>CNN 선정 가장 아름다운 역</div><div class="spot-price">무료</div><div class="spot-dist">🚶 도보 7~10분</div><div class="map-hint">구글맵으로 보기</div><div class="must-go">MUST</div></div></a>
@@ -410,7 +438,7 @@
     <div class="spot-card"><div class="spot-rank">21</div><div class="spot-emoji">🦐</div><div class="spot-name">치진 어항 수산시장</div><div class="spot-stars">★★★★☆ 4.1</div><div class="spot-info">신선 해산물 직거래 시장<br>치진섬 페리 이용</div><div class="spot-price">무료 입장</div><div class="spot-dist">🚇 MRT 하마싱역→페리 (약 35~40분)</div><div class="map-hint">구글맵으로 보기</div></div></a>
   </div>
 
-  <div class="section-title has-toggle"><span class="emoji">🍜</span> 맛집 가이드 <span style="font-size:13px;font-weight:400;color:rgba(58,42,26,0.4);margin-left:4px;">클릭→구글맵</span><span class="title-line"></span><div class="dist-toggle-pill"><button class="btn-hotel active-tab" onclick="switchMode('hotel')">🏨 숙소</button><button class="btn-me" onclick="switchMode('me')">📍 내 위치</button></div></div>
+  <div id="sec-food" class="section-title has-toggle"><span class="emoji">🍜</span> 맛집 가이드 <span style="font-size:13px;font-weight:400;color:rgba(58,42,26,0.4);margin-left:4px;">클릭→구글맵</span><span class="title-line"></span><div class="dist-toggle-pill"><button class="btn-hotel active-tab" onclick="switchMode('hotel')">🏨 숙소</button><button class="btn-me" onclick="switchMode('me')">📍 내 위치</button></div></div>
   <div class="food-grid">
     <div class="food-category">
       <div class="food-cat-title">🏆 현지인 단골 맛집</div>
@@ -543,7 +571,55 @@
     </div>
   </div>
 
-  <div class="section-title"><span class="emoji">🌙</span> 야시장 완전 공략</div>
+  <div id="sec-mrt" class="section-title"><span class="emoji">🚇</span> 가오슝 MRT 주요 노선</div>
+  <div class="mrt-wrap">
+    <div class="mrt-legend">
+      <span class="mrt-legend-item"><span class="mrt-dot-r"></span> 레드선</span>
+      <span class="mrt-legend-item"><span class="mrt-dot-o"></span> 오렌지선</span>
+      <span class="mrt-legend-item"><span class="mrt-dot-g"></span> 경전철(LRT)</span>
+      <span class="mrt-legend-item"><span class="mrt-dot-x"></span> 환승역</span>
+    </div>
+    <div class="mrt-v-wrap">
+      <div class="mrt-v-col">
+        <div class="mrt-v-header" style="background:#e83535;">🔴 레드선</div>
+        <div class="mrt-v-list mrt-vl-r">
+          <div class="mrt-v-item"><span class="mrt-nb-r"></span><div class="mrt-v-text">左營<br><small>쭤잉 (고속철)</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-r"></span><div class="mrt-v-text key">巨蛋<br><small>★ 루이펑 야시장</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-r"></span><div class="mrt-v-text">後驛<br><small>후이역</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-r"></span><div class="mrt-v-text">高雄車站<br><small>가오슝역</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-r"></span><div class="mrt-v-text">中央公園<br><small>중앙공원</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-x"></span><div class="mrt-v-text transfer">美麗島<br><small>★ 미려도 (환승)</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-r"></span><div class="mrt-v-text key">鹽埕埔<br><small>★ 맛집 밀집</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-x"></span><div class="mrt-v-text transfer">西子灣<br><small>★ 치진 페리</small></div></div>
+          <div class="mrt-v-item last"><span class="mrt-nb-r"></span><div class="mrt-v-text">小港<br><small>공항</small></div></div>
+        </div>
+      </div>
+      <div class="mrt-v-col">
+        <div class="mrt-v-header" style="background:#f07d00;">🟠 오렌지선</div>
+        <div class="mrt-v-list mrt-vl-o">
+          <div class="mrt-v-item"><span class="mrt-nb-x"></span><div class="mrt-v-text transfer">西子灣<br><small>★ 치진 페리 (환승)</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-o"></span><div class="mrt-v-text key">鹽埕埔<br><small>★ 맛집</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-x"></span><div class="mrt-v-text transfer">美麗島<br><small>★ 환승</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-o"></span><div class="mrt-v-text key">市議會<br><small>★ 아이허 유람선</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-o"></span><div class="mrt-v-text">文化中心<br><small>문화중심</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-o"></span><div class="mrt-v-text key">衛武營<br><small>★ 문화센터</small></div></div>
+          <div class="mrt-v-item last"><span class="mrt-nb-o"></span><div class="mrt-v-text">鳳山<br><small>펑산</small></div></div>
+        </div>
+      </div>
+      <div class="mrt-v-col">
+        <div class="mrt-v-header" style="background:#00a860;">🟢 경전철 (LRT)</div>
+        <div class="mrt-v-list mrt-vl-g">
+          <div class="mrt-v-item"><span class="mrt-nb-g"></span><div class="mrt-v-text key">哈瑪星<br><small>★ 치진 페리 출발</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-g"></span><div class="mrt-v-text key">駁二蓬萊<br><small>★ 보얼 예술특구</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-g"></span><div class="mrt-v-text">駁二大義<br><small>보얼 대의</small></div></div>
+          <div class="mrt-v-item"><span class="mrt-nb-g"></span><div class="mrt-v-text">凱旋中華<br><small>카이쉔</small></div></div>
+          <div class="mrt-v-item last"><span class="mrt-nb-g"></span><div class="mrt-v-text">夢時代<br><small>드림몰</small></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="sec-night" class="section-title"><span class="emoji">🌙</span> 야시장 완전 공략</div>
   <div class="night-market-grid">
     <div class="nm-card">
       <div class="nm-title">🏮 <a href="https://maps.google.com/?q=六合夜市+高雄" target="_blank">류허 야시장 (六合夜市) ↗</a></div>
@@ -573,7 +649,7 @@
     </div>
   </div>
 
-  <div class="section-title"><span class="emoji">🚇</span> 교통 정보</div>
+  <div id="sec-transport" class="section-title"><span class="emoji">🚇</span> 교통 정보</div>
   <div class="bottom-grid">
     <div class="info-card">
       <div class="info-card-title">✈️ 항공편</div>
@@ -593,7 +669,7 @@
     </div>
   </div>
 
-  <div class="section-title"><span class="emoji">✅</span> 실전 꿀팁</div>
+  <div id="sec-tips" class="section-title"><span class="emoji">✅</span> 실전 꿀팁</div>
   <div class="tips-grid">
     <div class="tip-card"><span class="tip-icon">💵</span><div class="tip-text"><strong>현금 필수</strong>야시장·로컬 맛집 90%가 현금 전용. NT$100짜리 충분히 준비</div></div>
     <div class="tip-card"><span class="tip-icon">⏰</span><div class="tip-text"><strong>아침 맛집은 일찍</strong>흥륭거, 시무위 등은 10시 이전에 가야 줄 안 섬</div></div>
@@ -603,7 +679,7 @@
     <div class="tip-card"><span class="tip-icon">🔥</span><div class="tip-text"><strong>한낮 12~15시 실내</strong>직사광선+습도 최강. 실내 냉방 명소 배치 필수</div></div>
   </div>
 
-  <div class="section-title"><span class="emoji">📱</span> 여행 필수 앱</div>
+  <div id="sec-apps" class="section-title"><span class="emoji">📱</span> 여행 필수 앱</div>
   <div class="app-grid">
     <div class="app-card"><span class="app-icon">💳</span><div><div class="app-name">아이패스 (一卡通)</div><div class="app-desc">MRT·버스·페리 15~50% 할인. 공항·역 구매 가능</div><a href="https://www.i-pass.com.tw" target="_blank" class="app-dl">공식 사이트 →</a></div></div>
     <div class="app-card"><span class="app-icon">🗺️</span><div><div class="app-name">Google Maps</div><div class="app-desc">오프라인 지도 미리 다운로드. 가오슝 지역 저장 필수</div><a href="https://maps.google.com" target="_blank" class="app-dl">다운로드 →</a></div></div>
@@ -613,7 +689,7 @@
     <div class="app-card"><span class="app-icon">🌦️</span><div><div class="app-name">대만 기상청 날씨</div><div class="app-desc">시간별 스콜 예보. 우산 챙기기 전 필수 체크</div><a href="https://www.cwa.gov.tw" target="_blank" class="app-dl">공식 사이트 →</a></div></div>
   </div>
 
-  <div class="section-title"><span class="emoji">🆘</span> 긴급 연락처</div>
+  <div id="sec-emergency" class="section-title"><span class="emoji">🆘</span> 긴급 연락처</div>
   <div class="emergency-grid">
     <div class="emergency-card">
       <div class="emergency-title">🚨 긴급 신고</div>
@@ -631,56 +707,6 @@
     </div>
   </div>
 
-  <div class="section-title"><span class="emoji">🚇</span> 가오슝 MRT 주요 노선</div>
-  <div class="mrt-wrap">
-    <div class="mrt-legend">
-      <span class="mrt-legend-item"><span class="mrt-dot-r"></span> 레드선</span>
-      <span class="mrt-legend-item"><span class="mrt-dot-o"></span> 오렌지선</span>
-      <span class="mrt-legend-item"><span class="mrt-dot-g"></span> 경전철(LRT)</span>
-      <span class="mrt-legend-item"><span class="mrt-dot-x"></span> 환승역</span>
-    </div>
-    <div class="mrt-scroll">
-      <!-- Red Line -->
-      <div class="mrt-line-block">
-        <div class="mrt-line-tag" style="background:#e83535;">레드선</div>
-        <div class="mrt-stations">
-          <div class="mrt-st"><div class="mrt-node-r"></div><div class="mrt-rail-r"></div><div class="mrt-sname">左營<br><small>쭤잉(고속철)</small></div></div>
-          <div class="mrt-st"><div class="mrt-node-r"></div><div class="mrt-rail-r"></div><div class="mrt-sname key">巨蛋<br><small>★루이펑야시장</small></div></div>
-          <div class="mrt-st"><div class="mrt-node-r"></div><div class="mrt-rail-r"></div><div class="mrt-sname">後驛<br><small>후이역</small></div></div>
-          <div class="mrt-st"><div class="mrt-node-r"></div><div class="mrt-rail-r"></div><div class="mrt-sname">高雄車站<br><small>가오슝역</small></div></div>
-          <div class="mrt-st"><div class="mrt-node-r"></div><div class="mrt-rail-r"></div><div class="mrt-sname">中央公園<br><small>중앙공원</small></div></div>
-          <div class="mrt-st"><div class="mrt-node-x"></div><div class="mrt-rail-r"></div><div class="mrt-sname transfer">美麗島<br><small>★미려도 환승</small></div></div>
-          <div class="mrt-st"><div class="mrt-node-r"></div><div class="mrt-rail-r"></div><div class="mrt-sname key">鹽埕埔<br><small>★맛집 밀집</small></div></div>
-          <div class="mrt-st"><div class="mrt-node-x"></div><div class="mrt-rail-r"></div><div class="mrt-sname transfer">西子灣<br><small>★치진 페리</small></div></div>
-          <div class="mrt-st last"><div class="mrt-node-r"></div><div class="mrt-sname">小港<br><small>공항</small></div></div>
-        </div>
-      </div>
-      <!-- Orange Line -->
-      <div class="mrt-line-block">
-        <div class="mrt-line-tag" style="background:#f07d00;">오렌지선</div>
-        <div class="mrt-stations">
-          <div class="mrt-st"><div class="mrt-node-x"></div><div class="mrt-rail-o"></div><div class="mrt-sname transfer">西子灣<br><small>★치진 페리</small></div></div>
-          <div class="mrt-st"><div class="mrt-node-o"></div><div class="mrt-rail-o"></div><div class="mrt-sname key">鹽埕埔<br><small>★맛집</small></div></div>
-          <div class="mrt-st"><div class="mrt-node-x"></div><div class="mrt-rail-o"></div><div class="mrt-sname transfer">美麗島<br><small>★환승</small></div></div>
-          <div class="mrt-st"><div class="mrt-node-o"></div><div class="mrt-rail-o"></div><div class="mrt-sname key">市議會<br><small>★아이허</small></div></div>
-          <div class="mrt-st"><div class="mrt-node-o"></div><div class="mrt-rail-o"></div><div class="mrt-sname">文化中心<br><small>문화중심</small></div></div>
-          <div class="mrt-st"><div class="mrt-node-o"></div><div class="mrt-rail-o"></div><div class="mrt-sname key">衛武營<br><small>★문화센터</small></div></div>
-          <div class="mrt-st last"><div class="mrt-node-o"></div><div class="mrt-sname">鳳山<br><small>펑산</small></div></div>
-        </div>
-      </div>
-      <!-- LRT -->
-      <div class="mrt-line-block">
-        <div class="mrt-line-tag" style="background:#00a860;">경전철</div>
-        <div class="mrt-stations">
-          <div class="mrt-st"><div class="mrt-node-g"></div><div class="mrt-rail-g"></div><div class="mrt-sname key">哈瑪星<br><small>★치진 페리</small></div></div>
-          <div class="mrt-st"><div class="mrt-node-g"></div><div class="mrt-rail-g"></div><div class="mrt-sname key">駁二蓬萊<br><small>★보얼예술</small></div></div>
-          <div class="mrt-st"><div class="mrt-node-g"></div><div class="mrt-rail-g"></div><div class="mrt-sname">駁二大義<br><small>보얼대의</small></div></div>
-          <div class="mrt-st"><div class="mrt-node-g"></div><div class="mrt-rail-g"></div><div class="mrt-sname">凱旋中華<br><small>카이쉔</small></div></div>
-          <div class="mrt-st last"><div class="mrt-node-g"></div><div class="mrt-sname">夢時代<br><small>드림몰</small></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
 
 </div>
 <div class="footer">가오슝 여행 가이드 · June 2026 · 즐거운 여행 되세요! 🌴</div>
@@ -853,7 +879,8 @@ async function fetchExchangeRate() {
     localStorage.setItem(cacheKey, TWD_TO_KRW);
     setRateNote(TWD_TO_KRW, data.date, false);
   } catch(e) {
-    setRateNote(44, null, false);
+    const today = new Date().toISOString().slice(0, 10);
+    setRateNote(44, today + ' (고정값)', false);
   }
 }
 
@@ -861,9 +888,11 @@ function setRateNote(rate, date, fromCache) {
   const note = document.getElementById('currencyNote');
   if (!note) return;
   if (date) {
-    note.textContent = `※ 1 TWD ≈ ${rate}원 (${date} 기준)`;
+    // date가 이미 "(고정값)" 포함한 경우 그대로, 아니면 "기준" 붙임
+    const suffix = date.includes('고정값') ? '' : ' 기준';
+    note.textContent = `※ 1 TWD ≈ ${rate}원 (${date}${suffix})`;
   } else {
-    note.textContent = `※ 1 TWD ≈ ${rate}원 (고정값)`;
+    note.textContent = `※ 1 TWD ≈ ${rate}원`;
   }
   updateCurrency();
 }
@@ -1006,11 +1035,42 @@ function initVisitCheck() {
   applyVisited();
 }
 
+// ===== 섹션 탭 네비게이션 =====
+const NAV_SECS = ['sec-spots','sec-food','sec-mrt','sec-night','sec-transport','sec-tips','sec-apps','sec-emergency'];
+
+function scrollToSec(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const navH = document.getElementById('navTabs')?.offsetHeight || 52;
+  const top = el.getBoundingClientRect().top + window.scrollY - navH - 4;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
+
+function updateActiveTab() {
+  const navH = document.getElementById('navTabs')?.offsetHeight || 52;
+  let activeIdx = 0;
+  NAV_SECS.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top <= navH + 24) activeIdx = i;
+  });
+  document.querySelectorAll('.nav-tab').forEach((t, i) => t.classList.toggle('active', i === activeIdx));
+  const activeTab = document.querySelectorAll('.nav-tab')[activeIdx];
+  if (activeTab) activeTab.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
+}
+
+function initNavTabs() {
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(() => { updateActiveTab(); ticking = false; }); ticking = true; }
+  }, { passive: true });
+}
+
 // Init all new features on load
 document.addEventListener('DOMContentLoaded', () => {
   fetchExchangeRate();
   initAreaFilters();
   initVisitCheck();
+  initNavTabs();
 });
 </script>
 
